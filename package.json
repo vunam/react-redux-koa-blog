@@ -1,0 +1,27 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "Creating a simple blog in ReactJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vu Nam Nguyen <vu@strangelab.co.uk",
+  "license": "ISC",
+  "dependencies": {
+    "immutable": "^3.7.6",
+    "koa": "^1.1.2",
+    "react": "^0.14.6",
+    "redux": "^3.0.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "eslint": "^1.10.3",
+    "postcss": "^5.0.14",
+    "webpack": "^1.12.11",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "babel": {
+    "presets": ["es2015"]
+  }
+}
