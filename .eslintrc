@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": [
+      2,
+      "never"
+    ],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "semi": [
+      2,
+      "never"
+    ],
+    "react/jsx-no-bind": 0
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  }
+}

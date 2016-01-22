@@ -3,6 +3,7 @@ import koa from 'koa'
 
 const text = 'Babel working'
 const app = koa()
+const port = 3000
 
 app.use(function *(next) {
   const start = new Date()
@@ -15,4 +16,8 @@ app.use(function *() {
   this.body = 'Hello world'
 })
 
-app.listen(3000)
+app.listen(port, () => {
+
+  console.log('🍣 - Koa server started at: ', port)
+
+})
