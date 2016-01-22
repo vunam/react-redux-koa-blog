@@ -4,11 +4,13 @@
   "description": "Creating a simple blog in ReactJS",
   "main": "index.js",
   "scripts": {
+    "dev": "node . --harmony",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vu Nam Nguyen <vu@strangelab.co.uk",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.3.14",
     "immutable": "^3.7.6",
     "koa": "^1.1.2",
     "react": "^0.14.6",
@@ -22,6 +24,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   }
 }
