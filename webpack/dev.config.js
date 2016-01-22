@@ -11,14 +11,11 @@ module.exports = {
   output: {
     filename: 'app.js',
     path: path.resolve('./dist'),
-    publicPath: "/assets/"
+    publicPath: "http://localhost:8080/"
   },
   module: {
-    preLoaders: [
-      { test: /\.(js|jsx)$/, loader: 'eslint-loader', exclude: /node_modules/ }
-    ],
     loaders: [
-      { test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']}
+      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel', 'eslint-loader']}
     ]
   },
   resolve: {

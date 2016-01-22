@@ -13,12 +13,15 @@
     "babel-polyfill": "^6.3.14",
     "immutable": "^3.7.6",
     "koa": "^1.1.2",
+    "koa-route": "^2.4.2",
     "react": "^0.14.6",
+    "react-dom": "^0.14.6",
     "redux": "^3.0.5"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
+    "babel-polyfill": "^6.3.14",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^3.1.0",
     "eslint-loader": "^1.2.0",
@@ -30,7 +33,8 @@
   },
   "babel": {
     "presets": [
-      "es2015"
+      "es2015",
+      "react"
     ]
   }
 }
