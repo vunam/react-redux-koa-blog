@@ -1,10 +1,11 @@
 import React from 'react'
-import Test from '../shared/components/test/test.jsx'
+import { Router, browserHistory } from 'react-router'
 import { render } from 'react-dom'
+import routes from '../shared/routes.jsx'
 
 render(
-  <div>
-    <Test />
-  </div>,
+  <Router history={ browserHistory } >
+    { routes }
+  </Router>,
   document.getElementById('root')
 )

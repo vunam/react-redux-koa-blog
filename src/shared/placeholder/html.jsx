@@ -13,7 +13,7 @@ export default class Html extends Component {
           <title>Blog</title>
         </head>
         <body>
-          <div id="root" dangerouslySetInnerHTML={{__html: content}}></div>
+          <div id="root" dangerouslySetInnerHTML={{__html: content}} />
           <script src={bundle} charSet="UTF-8"/>
         </body>
       </html>
