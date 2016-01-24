@@ -6,8 +6,6 @@ export default class ArticleContainer extends Component {
     return (
       <div className="ArticleContainer">
         <Article />
-        <Article />
-        <Article />
       </div>
     )
   }
