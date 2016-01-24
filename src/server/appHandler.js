@@ -5,14 +5,10 @@ import createLocation from 'history/lib/createLocation'
 import routes from '../shared/routes.jsx'
 import Html from '../shared/base/Html.jsx'
 
-import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
+import configureStore from '../shared/helpers/store'
 
 const bundleFile = "http://localhost:8080/app.js"
-
-import * as reducers from '../shared/reducers'
-
-const store = createStore(combineReducers(reducers))
 
 export default function *renderApp() {
   const location = createLocation(this.url)
@@ -24,6 +20,7 @@ export default function *renderApp() {
     }
 
     const component = <RoutingContext { ...renderProps } />
+    const store = configureStore()
 
     this.body = ReactDOM.renderToString(
       <Provider store={ store }>
