@@ -3,11 +3,11 @@ import { render } from 'enzyme';
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import Html from '../../src/shared/containers/about.jsx'
+import About from '../../src/shared/containers/About/About.jsx'
 
-describe('<Html />', () => {
+describe('<About />', () => {
 
-  const wrapper = render(<Html component={""} bundle={""} />)
+  const wrapper = render(<About />)
 
   it('Renders ok', function() {
     expect(wrapper).to.be.ok

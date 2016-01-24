@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import About from './about.jsx'
+import About from '../about/about.jsx'
+import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 
 export default class Main extends Component {
   render() {
@@ -7,10 +8,9 @@ export default class Main extends Component {
       <div className="Main">
         <div className="Main-sidebar">
           <About />
-          aaaaaaa
         </div>
         <div className="Main-content">
-        aaa
+          <ArticleContainer />
         </div>
       </div>
     )

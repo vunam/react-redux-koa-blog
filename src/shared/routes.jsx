@@ -1,7 +1,7 @@
 import React from 'react'
 import { IndexRoute, Route } from 'react-router'
-import Home from './containers/home.jsx'
-import NotFound from './containers/notfound.jsx'
+import Home from './containers/Home/Home.jsx'
+import NotFound from './containers/Notfound/Notfound.jsx'
 
 export default (
     <Route path="/">

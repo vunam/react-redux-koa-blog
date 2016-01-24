@@ -3,7 +3,7 @@ import { render } from 'enzyme';
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import Html from '../../src/shared/placeholder/html.jsx'
+import Html from '../../src/shared/base/Html.jsx'
 
 describe('<Html />', () => {
 

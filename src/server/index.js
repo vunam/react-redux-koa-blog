@@ -6,7 +6,7 @@ import { RoutingContext, match } from 'react-router';
 import createLocation from 'history/lib/createLocation'
 import routes from '../shared/routes.jsx'
 
-import Html from '../shared/placeholder/html.jsx'
+import Html from '../shared/base/Html.jsx'
 
 const app = koa()
 const port = 3000
