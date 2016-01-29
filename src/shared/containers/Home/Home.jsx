@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import About from '../about/about.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
+import { connect } from 'react-redux'
+import * as postActions from '../../actions/postsActions.js'
 
-export default class Main extends Component {
+@connect(state => state)
+class Home extends Component {
+
+  componentDidMount() {
+    postActions.getPosts()
+  }
+
   render() {
     return (
       <div className="Main">
@@ -16,3 +24,5 @@ export default class Main extends Component {
     )
   }
 }
+
+export default Home

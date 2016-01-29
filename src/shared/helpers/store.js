@@ -15,7 +15,7 @@ export default function configureStore(initialState) {
       window.devToolsExtension ? window.devToolsExtension() : createStore
     )(createStore)
   } else {
-    finalCreateStore = applyMiddleware(...middleware)(createStore)
+    finalCreateStore = compose(applyMiddleware(...middleware))(createStore)
   }
 
   const store = finalCreateStore(combinedReducer, initialState)

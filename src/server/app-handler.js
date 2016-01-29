@@ -19,13 +19,16 @@ export default function *renderApp() {
       this.redirect(redirectLocation.pathname + redirectLocation.search);
     }
 
-    const component = <RoutingContext { ...renderProps } />
     const store = configureStore()
 
-    this.body = ReactDOM.renderToString(
+    const component = (
       <Provider store={ store }>
+        <RoutingContext { ...renderProps } />
+      </Provider>)
+
+
+    this.body = ReactDOM.renderToString(
         <Html component={component} bundle={bundleFile} />
-      </Provider>
       )
   })
 }

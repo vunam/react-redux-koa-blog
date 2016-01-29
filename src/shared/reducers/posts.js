@@ -1,7 +1,7 @@
-export default (state = {}, action) => {
+export default function (state = {}, action) {
   switch (action.type) {
-    case 'FETCH_POSTS':
-      return state
+    case 'GET_POSTS':
+      return { aa: 'teee' }
     default:
       return state
   }

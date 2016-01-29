@@ -2,8 +2,8 @@ import 'babel-polyfill'
 import koa from 'koa'
 import KoaRoute from 'koa-route'
 
-import apiHandler from './apiHandler'
-import reactHandler from './appHandler'
+import apiHandler from './api-handler'
+import reactHandler from './app-handler'
 
 const app = koa()
 const port = 3000

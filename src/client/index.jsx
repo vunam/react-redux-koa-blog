@@ -7,7 +7,6 @@ import createBrowserHistory from 'history/lib/createBrowserHistory'
 import { Provider } from 'react-redux'
 import configureStore from '../shared/helpers/store'
 
-
 const history = createBrowserHistory()
 const store = configureStore()
 
