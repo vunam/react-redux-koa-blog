@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { RoutingContext, match } from 'react-router'
@@ -7,28 +9,28 @@ import Html from '../shared/base/Html.jsx'
 
 import { Provider } from 'react-redux'
 import configureStore from '../shared/helpers/store'
+import * as actions from '../shared/actions/postActions'
 
 const bundleFile = "http://localhost:8080/app.js"
 
-export default function *renderApp() {
+export default function *renderView() {
   const location = createLocation(this.url)
-  match({ routes, location }, (err, redirectLocation, renderProps) => {
+  const store = configureStore()
+
+  yield store.dispatch(actions.testPosts())
+
+  match({ routes, location }, (err, redirection, renderProps) => {
     if (err) { 
       this.throw(err.message, 500) 
-    } else if (redirectLocation) {
-      this.redirect(redirectLocation.pathname + redirectLocation.search);
+    } else if (redirection) { 
+      this.redirect(redirection.pathname + redirection.search) 
     }
-
-    const store = configureStore()
 
     const component = (
       <Provider store={ store }>
         <RoutingContext { ...renderProps } />
       </Provider>)
 
-
-    this.body = ReactDOM.renderToString(
-        <Html component={component} bundle={bundleFile} />
-      )
+    this.body = ReactDOM.renderToString(<Html component={component} bundle={bundleFile} store={store} />)
   })
 }

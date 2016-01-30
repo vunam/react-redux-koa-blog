@@ -8,7 +8,8 @@ import { Provider } from 'react-redux'
 import configureStore from '../shared/helpers/store'
 
 const history = createBrowserHistory()
-const store = configureStore()
+const initState = window.__store
+const store = configureStore(initState)
 
 render(
   <Provider store={ store }>

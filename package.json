@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "react-redux-koa-blog",
   "version": "0.0.1",
   "description": "Creating a simple blog in ReactJS",
   "main": "index.js",
@@ -22,7 +22,9 @@
     "react-redux": "^4.0.6",
     "react-router": "^1.0.3",
     "redux": "^3.0.5",
-    "redux-promise-middleware": "^2.3.3"
+    "redux-promise-middleware": "^2.3.3",
+    "redux-saga": "^0.5.0",
+    "redux-thunk": "^1.0.3"
   },
   "devDependencies": {
     "babel": "^6.3.26",

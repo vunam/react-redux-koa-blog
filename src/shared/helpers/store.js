@@ -2,17 +2,17 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
 import * as reducers from '../reducers'
 
-const middleware = [promiseMiddleware]
+const middleware = [promiseMiddleware({ promiseTypeSuffixes: ['PENDING', 'SUCCES', 'FAIL'] })]
 
 export default function configureStore(initialState) {
   const combinedReducer = combineReducers(reducers)
   let finalCreateStore
-  applyMiddleware(...middleware)(createStore)
+  // applyMiddleware(...middleware)(createStore)
 
   if (process.browser) {
     finalCreateStore = compose(
       applyMiddleware(...middleware),
-      window.devToolsExtension ? window.devToolsExtension() : createStore
+      (window.devToolsExtension ? window.devToolsExtension() : createStore)
     )(createStore)
   } else {
     finalCreateStore = compose(applyMiddleware(...middleware))(createStore)
