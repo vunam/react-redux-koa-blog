@@ -22,7 +22,22 @@ function request_posts() {
     .value()
 }
 
+function request_post_by_seo(name) {
+  return db('posts')
+    .chain()
+    .filter({published: true, seoName: name})
+    .take(1)
+    .value()
+}
+
 export function *get_latest_posts() {
-  const response = yield request_posts();
-  this.body = response;
+  const response = yield request_posts()
+  this.body = response
+}
+
+export function *get_post(data) {
+  //add request by id later
+  const response = yield request_post_by_seo(data)
+  console.log('response', response)
+  this.body = response
 }
