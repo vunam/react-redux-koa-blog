@@ -17,7 +17,7 @@ export default function *renderView() {
   const location = createLocation(this.url)
   const store = configureStore()
 
-  yield store.dispatch(actions.testPosts())
+  yield store.dispatch(actions.getPosts())
 
   match({ routes, location }, (err, redirection, renderProps) => {
     if (err) { 

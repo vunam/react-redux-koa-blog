@@ -7,7 +7,6 @@ const middleware = [promiseMiddleware({ promiseTypeSuffixes: ['PENDING', 'SUCCES
 export default function configureStore(initialState) {
   const combinedReducer = combineReducers(reducers)
   let finalCreateStore
-  // applyMiddleware(...middleware)(createStore)
 
   if (process.browser) {
     finalCreateStore = compose(

@@ -13,8 +13,7 @@ const db = low('db.json', { storage })
 //   text: 'Text'
 // })
 
-function requestPosts() {
-  console.log('aaa')
+function request_posts() {
   return db('posts')
     .chain()
     .filter({published: true})
@@ -23,7 +22,7 @@ function requestPosts() {
     .value()
 }
 
-export default function *getPosts() {
-  const response = yield requestPosts();
+export function *get_latest_posts() {
+  const response = yield request_posts();
   this.body = response;
 }

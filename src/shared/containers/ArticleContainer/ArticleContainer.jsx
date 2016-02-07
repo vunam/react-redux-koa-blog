@@ -1,12 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Article from '../../components/Article/Article.jsx'
 
 export default class ArticleContainer extends Component {
+  static propTypes = {
+    posts: PropTypes.array
+  };
+
   render() {
+    const { posts } = this.props
     return (
-      <div className="ArticleContainer">
-        <Article />
-      </div>
+      <section className="ArticleContainer">
+        { posts.map((post, i) => <Article key={i} />) }
+      </section>
     )
   }
 }

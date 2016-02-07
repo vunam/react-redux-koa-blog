@@ -2,14 +2,14 @@ import 'babel-polyfill'
 import koa from 'koa'
 import KoaRoute from 'koa-route'
 
-import apiHandler from './api-handler'
-import reactHandler from './app-handler'
+import * as apiHandler from './api-handler'
+import appHandler from './app-handler'
 
 const app = koa()
 const port = 3000
 
-app.use(KoaRoute.get('/', reactHandler));
-app.use(KoaRoute.get('/api/get_all_posts', apiHandler));
+app.use(KoaRoute.get('/', appHandler));
+app.use(KoaRoute.get('/api/get_latest_posts', apiHandler.get_latest_posts));
 
 app.listen(port, () => {
   console.log('!  🍣  ====  Koa server started at port: ', port)
