@@ -23,11 +23,14 @@ function request_posts() {
 }
 
 function request_post_by_seo(name) {
-  return db('posts')
+  const post = db('posts')
     .chain()
     .filter({published: true, seoName: name})
-    .take(1)
     .value()
+
+  if (!post.length) return { error: "No post found" }
+
+  return post[0]
 }
 
 export function *get_latest_posts() {

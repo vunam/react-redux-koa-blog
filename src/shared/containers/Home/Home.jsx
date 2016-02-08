@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import About from '../about/about.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import { connect } from 'react-redux'
-import * as postActions from '../../actions/postActions.js'
+import * as actions from '../../actions/posts'
 
 @connect(state => ({
   posts: state.posts.latests
@@ -14,7 +14,7 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    postActions.getPosts()
+    actions.getPosts()
   }
 
   render() {

@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import promiseMiddleware from 'redux-promise-middleware'
 import * as reducers from '../reducers'
 
-const middleware = [promiseMiddleware({ promiseTypeSuffixes: ['PENDING', 'SUCCES', 'FAIL'] })]
+const middleware = [promiseMiddleware({ promiseTypeSuffixes: ['PENDING', 'SUCCESS', 'FAIL'] })]
 
 export default function configureStore(initialState) {
   const combinedReducer = combineReducers(reducers)

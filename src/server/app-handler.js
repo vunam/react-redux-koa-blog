@@ -9,7 +9,7 @@ import Html from '../shared/base/Html.jsx'
 
 import { Provider } from 'react-redux'
 import configureStore from '../shared/helpers/store'
-import * as actions from '../shared/actions/postActions'
+import * as actions from '../shared/actions/posts'
 
 const bundleFile = "http://localhost:8080/app.js"
 
