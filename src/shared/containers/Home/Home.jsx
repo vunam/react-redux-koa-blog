@@ -3,6 +3,7 @@ import About from '../about/about.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/posts'
+if (typeof window !== 'undefined') require('concise.css/dist/concise.min.css')
 
 @connect(state => ({
   posts: state.posts.latests

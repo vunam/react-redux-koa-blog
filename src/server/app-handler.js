@@ -11,7 +11,7 @@ import { Provider } from 'react-redux'
 import configureStore from '../shared/helpers/store'
 import * as actions from '../shared/actions/posts'
 
-const bundleFile = "http://localhost:8080/app.js"
+const assetPath = "http://localhost:8080"
 
 export default function *renderView() {
   const location = createLocation(this.url)
@@ -31,6 +31,6 @@ export default function *renderView() {
         <RoutingContext { ...renderProps } />
       </Provider>)
 
-    this.body = ReactDOM.renderToString(<Html component={component} bundle={bundleFile} store={store} />)
+    this.body = ReactDOM.renderToString(<Html component={component} assetPath={assetPath} store={store} />)
   })
 }
