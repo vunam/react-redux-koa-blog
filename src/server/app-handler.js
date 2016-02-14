@@ -2,7 +2,7 @@ import 'babel-polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom/server'
-import { RoutingContext, match } from 'react-router'
+import { RouterContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation'
 import routes from '../shared/routes.jsx'
 import Html from '../shared/base/Html.jsx'
@@ -28,7 +28,7 @@ export default function *renderView() {
 
     const component = (
       <Provider store={ store }>
-        <RoutingContext { ...renderProps } />
+        <RouterContext { ...renderProps } />
       </Provider>)
 
     this.body = ReactDOM.renderToString(<Html component={component} assetPath={assetPath} store={store} />)

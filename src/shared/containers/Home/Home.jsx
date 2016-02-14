@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import Header from '../Header/Header.jsx'
+import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import { connect } from 'react-redux'

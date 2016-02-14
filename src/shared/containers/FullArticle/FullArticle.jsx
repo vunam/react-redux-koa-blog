@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import Header from '../Header/Header.jsx'
+import Header from '../../components/Header/Header.jsx'
+import Footer from '../../components/Footer/Footer.jsx'
 import Article from '../../components/Article/Article.jsx'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/posts'
@@ -24,7 +25,7 @@ export default class FullArticle extends Component {
   onBackEvent(e) {
     const { history } = this.props
     e.preventDefault()
-    history.pushState(null, '/')
+    history.push('/')
   }
 
   render() {
@@ -36,6 +37,7 @@ export default class FullArticle extends Component {
         <div className="FullArticle-foot">
           <a onClick={ this.onBackEvent.bind(this) }>&laquo; Back to home</a>
         </div>
+        <Footer />
       </div>
     )
   }
