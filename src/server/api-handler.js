@@ -41,6 +41,5 @@ export function *get_latest_posts() {
 export function *get_post(data) {
   //add request by id later
   const response = yield request_post_by_seo(data)
-  console.log('response', response)
   this.body = response
 }

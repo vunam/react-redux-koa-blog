@@ -1,0 +1,11 @@
+.ArticleContainer {
+  -webkit-animation: fadeIn 1s forwards;
+  -moz-animation:    fadeIn 1s forwards;
+  -o-animation:      fadeIn 1s forwards;
+  animation:         fadeIn 1s forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}

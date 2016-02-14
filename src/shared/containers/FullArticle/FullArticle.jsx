@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import About from '../about/About.jsx'
+import Header from '../Header/Header.jsx'
 import Article from '../../components/Article/Article.jsx'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/posts'
@@ -12,7 +12,8 @@ export default class FullArticle extends Component {
   static propTypes = {
     post: PropTypes.object,
     params: PropTypes.object,
-    getPostBySeo: PropTypes.func
+    getPostBySeo: PropTypes.func,
+    history: PropTypes.object
   };
 
   componentDidMount() {
@@ -21,16 +22,16 @@ export default class FullArticle extends Component {
   }
 
   onBackEvent(e) {
-    console.log(this.props)
     const { history } = this.props
     e.preventDefault()
-    history.pushState(null, '/');
+    history.pushState(null, '/')
   }
+
   render() {
     const { post } = this.props
     return (
       <div className="FullArticle">
-        <About />
+        <Header />
         <Article {...post} type="FULL" />
         <div className="FullArticle-foot">
           <a onClick={ this.onBackEvent.bind(this) }>&laquo; Back to home</a>

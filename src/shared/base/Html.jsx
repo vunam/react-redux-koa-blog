@@ -15,7 +15,7 @@ export default class Html extends Component {
     return (
       <html>
         <head>
-          <title>Blog</title>
+          <title>React Blog</title>
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
           <script dangerouslySetInnerHTML={{__html: `window.__store=${state};`}} charSet="UTF-8"/>
           <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,300,700' rel='stylesheet' type='text/css' />
