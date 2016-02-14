@@ -2,8 +2,13 @@
   width: 100%;
   margin: 0;
   padding: 20px 0;
+  border-top: 1px solid gray;
+}
+
+.Article:last-child {
   border-bottom: 1px solid gray;
 }
+
 .Article-content {
   position: relative;
   display: block;
@@ -14,11 +19,16 @@
   box-sizing: border-box;
 }
 
+.Article-date {
+  font-weight: bold;
+}
+
 .Article-title {
   font-family: 'Lora', serif;
   font-weight: bold;
   font-size: 2.8em;
   margin: 0.1em 0;
+  color: black ;
 }
 
 .Article-subtitle {
@@ -32,6 +42,7 @@
 .Article-image{
   width: 100%;
   height: auto;
+  margin: 1em 0 0.3em;
 }
 
 .Article-text {

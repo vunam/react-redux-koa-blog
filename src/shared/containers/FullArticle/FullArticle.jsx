@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import About from '../about/About.jsx'
 import Article from '../../components/Article/Article.jsx'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/posts'
@@ -21,10 +22,10 @@ export default class FullArticle extends Component {
   render() {
     const { post } = this.props
     return (
-      <section className="FullArticle">
-      full
+      <div className="FullArticle">
+        <About />
         <Article {...post} type="FULL" />
-      </section>
+      </div>
     )
   }
 }
