@@ -15,14 +15,11 @@ export default class FullArticle extends Component {
 
   componentDidMount() {
     const { getPostBySeo, params } = this.props
-
-    console.log(this.props.params)
     getPostBySeo(params.seo)
   }
 
   render() {
     const { post } = this.props
-    console.log(post)
     return (
       <section className="FullArticle">
       full

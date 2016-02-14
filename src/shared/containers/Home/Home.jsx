@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import About from '../about/about.jsx'
+import About from '../about/About.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import { connect } from 'react-redux'
 import * as actions from '../../actions/posts'
-if (typeof window !== 'undefined') require('concise.css/dist/concise.min.css')
+if (typeof window !== 'undefined') require('./Home.scss')
 
 @connect(state => ({
   posts: state.posts.latests
@@ -21,11 +21,11 @@ class Home extends Component {
   render() {
     const { posts } = this.props
     return (
-      <div className="Main">
-        <div className="Main-sidebar">
+      <div className="Home">
+        <div className="Home-sidebar">
           <About />
         </div>
-        <div className="Main-content">
+        <div className="Home-content">
           <ArticleContainer posts={ posts } />
         </div>
       </div>

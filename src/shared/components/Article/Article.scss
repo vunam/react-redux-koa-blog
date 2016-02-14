@@ -1,0 +1,41 @@
+.Article {
+  width: 100%;
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid gray;
+}
+.Article-content {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 980px;
+  padding: 20px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.Article-title {
+  font-family: 'Lora', serif;
+  font-weight: bold;
+  font-size: 2.8em;
+  margin: 0.1em 0;
+}
+
+.Article-subtitle {
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  margin: 0.3em 0;
+  text-transform: uppercase;
+}
+
+.Article-image{
+  width: 100%;
+  height: auto;
+}
+
+.Article-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.3em;
+  margin: 1em 0 0.3em;
+}

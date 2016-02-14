@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
+if (typeof window !== 'undefined') require('./About.scss')
 
 export default class About extends Component {
   render() {
     return (
-      <div className="About">
-        <img src={""} alt="" />
-        <h1>Title here</h1>
-        <h2>Sub title here</h2>
-        <p>A description</p>
-      </div>
+      <section className="About">
+        <h1 className="About-title">React blog</h1>
+        <p>Written with React, Redux, Koa and many more cool stuff. This is a ready to use simple, fast and stylish blog.</p>
+      </section>
     )
   }
 }

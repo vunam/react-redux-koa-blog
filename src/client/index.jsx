@@ -10,6 +10,8 @@ import configureStore from '../shared/helpers/store'
 const history = createBrowserHistory()
 const initState = window.__store
 const store = configureStore(initState)
+require('concise.css/dist/concise.min.css')
+require('../shared/base/base.scss')
 
 render(
   <Provider store={ store }>
