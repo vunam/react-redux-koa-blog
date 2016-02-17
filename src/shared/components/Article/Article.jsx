@@ -23,20 +23,20 @@ export default class Article extends Component {
 
   displayTitle() {
     const { type, title, seoName } = this.props
-    return (type === 'FULL') ? title : <Link to={ '/article/' + seoName }>{ title }</Link>
+    return (type === 'full') ? title : <Link to={ '/article/' + seoName }>{ title }</Link>
   }
 
   displayText() {
     const { type, text, lead, seoName } = this.props
-    if (type === 'FULL') return <div dangerouslySetInnerHTML={{ __html: text } }/>
+    if (type === 'full') return <div dangerouslySetInnerHTML={{ __html: text } }/>
     return <p>{ lead } <Link to={ '/article/' + seoName }>Read more &raquo;</Link></p>
   }
 
   render() {
-    const { subTitle, author, date, image } = this.props
+    const { type, subTitle, author, date, image, seoName } = this.props
 
     return (
-      <article className="Article">
+      <article id={ seoName } className={`Article Article--${type}`}>
         <section className="Article-content">
           <header>
             <div className="Article-meta">

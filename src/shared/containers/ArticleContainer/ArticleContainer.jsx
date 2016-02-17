@@ -11,7 +11,7 @@ export default class ArticleContainer extends Component {
     const { posts } = this.props
     return (
       <section className="ArticleContainer">
-        { posts.map((post, i) => <Article key={i} {...post} type="PREVIEW" />) }
+        { posts.map((post, i) => <Article key={i} {...post} type="preview" />) }
       </section>
     )
   }

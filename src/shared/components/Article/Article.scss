@@ -1,12 +1,10 @@
 .Article {
   width: 100%;
   margin: 0;
-  padding: 20px 0;
-  border-top: 1px solid gray;
 }
 
-.Article:last-child {
-  border-bottom: 1px solid gray;
+.Article--preview {
+  border-bottom: 1px solid #cccccc;
 }
 
 .Article-content {
@@ -14,7 +12,7 @@
   display: block;
   width: 100%;
   max-width: 980px;
-  padding: 20px;
+  padding: 40px 20px;
   margin: 0 auto;
   box-sizing: border-box;
 }

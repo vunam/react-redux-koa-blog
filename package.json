@@ -51,6 +51,7 @@
     "jsdom": "^8.0.2",
     "karma": "^0.13.19",
     "mocha": "^2.3.4",
+    "mocha-jsdom": "^1.0.0",
     "node-sass": "^3.4.2",
     "postcss": "^5.0.14",
     "raw-loader": "^0.5.1",

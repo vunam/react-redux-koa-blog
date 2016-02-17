@@ -17,6 +17,13 @@ class Home extends Component {
 
   componentDidMount() {
     actions.getPosts()
+    this.updateScrollPosition()
+  }
+
+  updateScrollPosition() {
+    const hash = window.decodeURIComponent(window.location.hash)
+    const element = document.querySelector(hash)
+    if (element) element.scrollIntoView()
   }
 
   render() {

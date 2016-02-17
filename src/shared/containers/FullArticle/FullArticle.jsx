@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import Article from '../../components/Article/Article.jsx'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import * as actions from '../../actions/posts'
 if (typeof window !== 'undefined') require('./FullArticle.scss')
 
@@ -16,16 +17,13 @@ export default class FullArticle extends Component {
     getPostBySeo: PropTypes.func,
     history: PropTypes.object
   };
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  };
 
-  componentDidMount() {
+  componentWillMount() {
     const { getPostBySeo, params } = this.props
     getPostBySeo(params.seo)
-  }
-
-  onBackEvent(e) {
-    const { history } = this.props
-    e.preventDefault()
-    history.push('/')
   }
 
   render() {
@@ -33,9 +31,14 @@ export default class FullArticle extends Component {
     return (
       <div className="FullArticle">
         <Header />
-        <Article {...post} type="FULL" />
+        <Article type="full" {...post} />
         <div className="FullArticle-foot">
-          <a onClick={ this.onBackEvent.bind(this) }>&laquo; Back to home</a>
+          <Link className="FullArticle-backLink" to={{
+            pathname: '/',
+            hash: (post ? '#' + post.seoName : '') }}
+          >
+            &laquo; Back to home
+          </Link>
         </div>
         <Footer />
       </div>

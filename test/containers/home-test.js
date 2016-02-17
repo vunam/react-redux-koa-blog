@@ -13,15 +13,5 @@ describe('<Home />', () => {
   it('Renders ok', function() {
     expect(component).to.be.ok
   })
-
-  it('Has a sidebar', function() {
-    const node = component.find('.Main-sidebar')
-    expect(node).to.have.length(1)
-  })
-
-  it('Has content', function() {
-    const node = component.find('.Main-content')
-    expect(node).to.have.length(1)
-  })
-
+  
 })
