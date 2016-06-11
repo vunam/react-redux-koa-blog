@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import Helmet from 'react-helmet'
 import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import Article from '../../components/Article/Article.jsx'
@@ -26,10 +27,24 @@ export default class FullArticle extends Component {
     getPostBySeo(params.seo)
   }
 
+  // getHead(title) {
+  //   return {
+  //     title,
+  //     titleTemplate: 'React Blog %s',
+  //     meta: [
+  //       { name: 'description', content: 'Helmet application' },
+  //       { property: 'og:type', content: 'article' }
+  //     ]
+  //   }
+  // }
+
   render() {
     const { post } = this.props
+    // const head = this.getHead(post.title)
+    // if (!post) return ''
     return (
       <div className="FullArticle">
+        { /* <Helmet { ...head } /> */ }
         <Header />
         <Article type="full" {...post} />
         <div className="FullArticle-foot">

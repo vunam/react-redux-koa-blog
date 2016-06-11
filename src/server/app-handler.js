@@ -2,6 +2,7 @@ import 'babel-polyfill'
 
 import React from 'react'
 import ReactDOM from 'react-dom/server'
+import Helmet from 'react-helmet'
 import { RouterContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation'
 import routes from '../shared/routes.jsx'
@@ -11,7 +12,7 @@ import { Provider } from 'react-redux'
 import configureStore from '../shared/helpers/store'
 import * as actions from '../shared/actions/posts'
 
-const assetPath = "http://localhost:8080"
+const assetPath = 'http://localhost:8080'
 
 export default function *renderView() {
   const location = createLocation(this.url)
@@ -32,5 +33,6 @@ export default function *renderView() {
       </Provider>)
 
     this.body = ReactDOM.renderToString(<Html component={component} assetPath={assetPath} store={store} />)
+    let head = Helmet.rewind();
   })
 }
