@@ -18,34 +18,25 @@ export default class FullArticle extends Component {
     getPostBySeo: PropTypes.func,
     history: PropTypes.object
   };
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  };
 
   componentWillMount() {
     const { getPostBySeo, params } = this.props
     getPostBySeo(params.seo)
   }
 
-  // getHead(title) {
-  //   return {
-  //     title,
-  //     titleTemplate: 'React Blog %s',
-  //     meta: [
-  //       { name: 'description', content: 'Helmet application' },
-  //       { property: 'og:type', content: 'article' }
-  //     ]
-  //   }
-  // }
+  getHead() {
+    const { post: { title } } = this.props
+    return { title }
+  }
 
   render() {
     const { post } = this.props
-    // const head = this.getHead(post.title)
-    // if (!post) return ''
+    if (!post) return null
+    const head = this.getHead()
     return (
       <div className="FullArticle">
-        { /* <Helmet { ...head } /> */ }
         <Header />
+        <Helmet { ...head } />
         <Article type="full" {...post} />
         <div className="FullArticle-foot">
           <Link className="FullArticle-backLink" to={{
