@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import { strToShortDateTime } from '../../helpers/dates.js'
 if (typeof window !== 'undefined') require('./Article.scss')
 
@@ -13,23 +13,52 @@ export default class Article extends Component {
     seoName: PropTypes.string,
     lead: PropTypes.string,
     text: PropTypes.string,
-    image: PropTypes.string
+    image: PropTypes.string,
+    categories: PropTypes.array,
+    tags: PropTypes.array
   };
 
-  displayDate() {
+  displayDate = () => {
     const { date } = this.props
     return strToShortDateTime(date)
   }
 
-  displayTitle() {
+  displayTitle = () => {
     const { type, title, seoName } = this.props
     return (type === 'full') ? title : <Link to={ '/article/' + seoName }>{ title }</Link>
   }
 
-  displayText() {
+  displayText = () => {
     const { type, text, lead, seoName } = this.props
     if (type === 'full') return <div dangerouslySetInnerHTML={{ __html: text } }/>
-    return <p>{ lead } <Link to={ '/article/' + seoName }>Read more &raquo;</Link></p>
+    return <p>{ lead } <Link to={ `/article/${seoName}` }>Read more &raquo;</Link></p>
+  }
+
+  goToArticle = () => {
+    const { seoName } = this.props
+    browserHistory.push(`/article/${seoName}`)
+  }
+
+  showCategories = () => {
+    const { categories } = this.props
+    if (categories && categories.length) {
+      return (
+        <div className="Article-categories">
+          Categories: { categories.map((cat) => <Link to={`/category/${cat}`}>{`#${cat} `}</Link>) }
+        </div>
+      )
+    }
+  }
+
+  showTags = () => {
+    const { tags } = this.props
+    if (tags && tags.length) {
+      return (
+        <div className="Article-tags">
+          Tags: { tags.map((tag) => <Link to={`/tag/${tag}`}>{`#${tag} `}</Link>) }
+        </div>
+      )
+    }
   }
 
   render() {
@@ -38,7 +67,7 @@ export default class Article extends Component {
     return (
       <article id={ seoName } className={`Article Article--${type}`}>
         <section className="Article-content">
-          <header>
+          <header onClick={ this.goToArticle }>
             <div className="Article-meta">
               <span className="Article-date">
                 <time dateTime={ date }>{ this.displayDate() }</time>
@@ -47,12 +76,14 @@ export default class Article extends Component {
             <h1 className="Article-title" role="title">
               { this.displayTitle() }
             </h1>
-            <h2 className="Article-subTitle">{ subTitle }</h2>
+            <h2 className="Article-subTitle">{subTitle}</h2>
           </header>
-          { image ? <img className="Article-image" src={ image } /> : '' }
+          { image ? <img onClick={ this.goToArticle } className="Article-image" src={image} /> : '' }
           <div className="Article-text">
             { this.displayText() }
           </div>
+          { this.showTags() }
+          { this.showCategories() }
         </section>
       </article>
     )

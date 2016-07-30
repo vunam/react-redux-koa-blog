@@ -16,7 +16,8 @@ export default class FullArticle extends Component {
     post: PropTypes.object,
     params: PropTypes.object,
     getPostBySeo: PropTypes.func,
-    history: PropTypes.object
+    history: PropTypes.object,
+    clearPost: PropTypes.func
   }
 
   componentWillMount() {
