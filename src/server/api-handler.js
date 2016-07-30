@@ -39,7 +39,16 @@ export function *get_latest_posts() {
 }
 
 export function *get_post(data) {
-  //add request by id later
+  // add request by id later
   const response = yield request_post_by_seo(data)
   this.body = response
+}
+
+export function *get_category(category) {  
+  const cat = db('categories')
+    .chain()
+    .filter({published: true, seoName: name})
+    .value()
+
+  return cat
 }

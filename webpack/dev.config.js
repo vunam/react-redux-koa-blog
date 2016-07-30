@@ -1,18 +1,18 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
-var path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
   context: path.join(__dirname, '../'),
   entry: [
-      './src/client/index.jsx',
-      'webpack-dev-server/client?http://localhost:8080/',
-      'webpack/hot/only-dev-server'
+    './src/client/index.jsx',
+    'webpack-dev-server/client?http://localhost:8080/',
+    'webpack/hot/only-dev-server'
   ],
   output: {
     filename: 'app.js',
     path: path.resolve('./dist'),
-    publicPath: "http://localhost:8080/"
+    publicPath: 'http://localhost:8080/'
   },
   module: {
     loaders: [

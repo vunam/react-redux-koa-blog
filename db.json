@@ -1,4 +1,30 @@
 {
+  "categories": [
+    {
+      "id": 0,
+      "parent": 0,
+      "name": "All posts",
+      "seo": "all"
+    },
+    {
+      "id": 1,
+      "parent": 0,
+      "name": "General",
+      "seo": "general"
+    },
+    {
+      "id": 2,
+      "parent": 0,
+      "name": "Personal",
+      "seo": "general"
+    },
+    {
+      "id": 3,
+      "parent": 1,
+      "name": "Travel",
+      "seo": "travel"
+    }
+  ],
   "posts": [
     {
       "title": "A blog title",
