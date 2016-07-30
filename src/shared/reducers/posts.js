@@ -10,6 +10,11 @@ export default function (state = {}, action) {
         ...state,
         current: action.payload
       }
+    case 'CLEAR_POST':
+      return {
+        ...state,
+        current: {}
+      }
     default:
       return { ...state }
   }

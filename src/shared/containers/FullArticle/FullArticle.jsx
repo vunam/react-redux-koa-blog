@@ -17,12 +17,17 @@ export default class FullArticle extends Component {
     params: PropTypes.object,
     getPostBySeo: PropTypes.func,
     history: PropTypes.object
-  };
+  }
 
   componentWillMount() {
     const { getPostBySeo, params } = this.props
     getPostBySeo(params.seo)
   }
+
+  componentWillUnmount() {
+    this.props.clearPost()
+  }
+
 
   getHead() {
     const { post: { title } } = this.props

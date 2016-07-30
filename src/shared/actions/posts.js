@@ -28,6 +28,12 @@ export function getPosts() {
   }
 }
 
+export function clearPost() {
+  return {
+    type: 'CLEAR_POST'
+  }
+}
+
 export function getPostBySeo(seoName) {
   return {
     type: 'GET_POST',
