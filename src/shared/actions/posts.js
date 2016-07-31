@@ -1,9 +1,9 @@
 import Request from 'superagent'
 const host = (process.browser) ? '' : ':3000'
 
-const fetchPosts = () => (
+const fetchPosts = (page = null) => (
   new Promise((resolve, reject) => {
-    Request.get(host + '/api/get_latest_posts').end((err, res) => {
+    Request.get(`${host}/api/get_latest_posts${page ? `?page=${page}` : ''}`).end((err, res) => {
       if (err) reject(err)
       resolve(res.body)
     })
@@ -22,6 +22,15 @@ const fetchPostBySeo = (seoName) => {
 export function getPosts() {
   return {
     type: 'GET_POSTS',
+    payload: {
+      promise: fetchPosts()
+    }
+  }
+}
+
+export function getAdditionalPosts() {
+  return {
+    type: 'GET_ADDITIONAL_POSTS',
     payload: {
       promise: fetchPosts()
     }

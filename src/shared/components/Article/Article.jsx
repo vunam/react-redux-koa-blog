@@ -44,7 +44,7 @@ export default class Article extends Component {
     if (categories && categories.length) {
       return (
         <div className="Article-categories">
-          Categories: { categories.map((cat) => <Link to={`/category/${cat}`}>{`#${cat} `}</Link>) }
+          Categories: { categories.map((cat, i) => <Link key={i} to={`/category/${cat}`}>{`#${cat} `}</Link>) }
         </div>
       )
     }
@@ -55,7 +55,7 @@ export default class Article extends Component {
     if (tags && tags.length) {
       return (
         <div className="Article-tags">
-          Tags: { tags.map((tag) => <Link to={`/tag/${tag}`}>{`#${tag} `}</Link>) }
+          Tags: { tags.map((tag, i) => <Link key={i} to={`/tag/${tag}`}>{`#${tag} `}</Link>) }
         </div>
       )
     }
@@ -67,7 +67,7 @@ export default class Article extends Component {
     return (
       <article id={ seoName } className={`Article Article--${type}`}>
         <section className="Article-content">
-          <header onClick={ this.goToArticle }>
+          <header>
             <div className="Article-meta">
               <span className="Article-date">
                 <time dateTime={ date }>{ this.displayDate() }</time>
