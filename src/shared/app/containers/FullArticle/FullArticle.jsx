@@ -5,7 +5,7 @@ import Footer from '../../components/Footer/Footer.jsx'
 import Article from '../../components/Article/Article.jsx'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import * as actions from '../../actions/posts'
+import * as actions from '../../../actions/posts'
 if (typeof window !== 'undefined') require('./FullArticle.scss')
 
 @connect(state => ({

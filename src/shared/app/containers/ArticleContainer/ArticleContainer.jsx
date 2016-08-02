@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Article from '../../components/Article/Article.jsx'
 import { connect } from 'react-redux'
-import * as actions from '../../actions/posts'
+import * as actions from '../../../actions/posts'
 if (typeof window !== 'undefined') require('./ArticleContainer.scss')
 
 @connect(null, actions)

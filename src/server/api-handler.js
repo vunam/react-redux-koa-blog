@@ -13,41 +13,41 @@ const db = low('db.json', { storage })
 //   text: 'Text'
 // })
 
-function request_posts() {
+function requestPosts() {
   return db('posts')
     .chain()
-    .filter({published: true})
+    .filter({ published: true })
     .reverse()
     .take(8)
     .value()
 }
 
-function request_post_by_seo(name) {
+function requestPostBySeo(name) {
   const post = db('posts')
     .chain()
-    .filter({published: true, seoName: name})
+    .filter({ published: true, seoName: name })
     .value()
 
-  if (!post.length) return { error: "No post found" }
+  if (!post.length) return { error: 'No post found' }
 
   return post[0]
 }
 
-export function *get_latest_posts() {
-  const response = yield request_posts()
+export function *getLatestPosts() {
+  const response = yield requestPosts()
   this.body = response
 }
 
-export function *get_post(data) {
+export function *getPost(data) {
   // add request by id later
-  const response = yield request_post_by_seo(data)
+  const response = yield requestPostBySeo(data)
   this.body = response
 }
 
-export function *get_category(category) {  
+export function *getCategory(category) {
   const cat = db('categories')
     .chain()
-    .filter({published: true, seoName: name})
+    .filter({ published: true, categories: category })
     .value()
 
   return cat

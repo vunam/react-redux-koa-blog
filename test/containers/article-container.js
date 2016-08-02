@@ -3,19 +3,20 @@ import { render } from 'enzyme';
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import ArticleContainer from '../../src/shared/containers/ArticleContainer/ArticleContainer.jsx'
+import ArticleContainer from '../../src/shared/app/containers/ArticleContainer/ArticleContainer.jsx'
 
 describe('<ArticleContainer />', () => {
   const data = {
-    author: "An author",
-    date: "2016-01-20T12:00:00",
+    author: 'An author',
+    date: '2016-01-20T12:00:00',
     published: true,
-    subTitle: "A sub title",
-    text: "Text",
-    title: "A blog title"
+    subTitle: 'A sub title',
+    text: 'Text',
+    title: 'A blog title'
   }
   const posts = new Array(3).fill(data)
-  const component = render(<ArticleContainer posts={posts}/>)
+  const { WrappedComponent } = ArticleContainer
+  const component = render(<WrappedComponent posts={posts} />)
 
   it('Renders ok', function() {
     expect(component).to.be.ok
@@ -30,5 +31,4 @@ describe('<ArticleContainer />', () => {
     const nodes = component.find('.ArticleContainer').find('article')
     expect(nodes).to.have.length.of.at.least(3)
   })
-
 })

@@ -4,7 +4,7 @@ import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import { connect } from 'react-redux'
-import * as actions from '../../actions/posts'
+import * as actions from '../../../actions/posts'
 if (typeof window !== 'undefined') require('./Home.scss')
 
 @connect(state => ({

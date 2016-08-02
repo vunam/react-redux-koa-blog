@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { expect } from 'chai'
 import sinon from 'sinon'
 
-import Header from '../../src/shared/components/Header/Header.jsx'
+import Header from '../../src/shared/app/components/Header/Header.jsx'
 
 describe('<Header />', () => {
   const component = shallow(<Header />)

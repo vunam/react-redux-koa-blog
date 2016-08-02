@@ -8,8 +8,8 @@ import appHandler from './app-handler'
 const app = koa()
 const port = 3000
 
-app.use(KoaRoute.get('/api/get_latest_posts', apiHandler.get_latest_posts))
-app.use(KoaRoute.get('/api/get_post/:data', apiHandler.get_post))
+app.use(KoaRoute.get('/api/posts/latest', apiHandler.getLatestPosts))
+app.use(KoaRoute.get('/api/posts/get/:data', apiHandler.getPost))
 app.use(KoaRoute.get('/*', appHandler))
 
 app.listen(port, () => {

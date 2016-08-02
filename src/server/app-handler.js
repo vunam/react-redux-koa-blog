@@ -21,10 +21,10 @@ export default function *renderView() {
   yield store.dispatch(actions.getPosts())
 
   match({ routes, location }, (err, redirection, renderProps) => {
-    if (err) { 
-      this.throw(err.message, 500) 
-    } else if (redirection) { 
-      this.redirect(redirection.pathname + redirection.search) 
+    if (err) {
+      this.throw(err.message, 500)
+    } else if (redirection) {
+      this.redirect(redirection.pathname + redirection.search)
     }
 
     const component = (
@@ -33,6 +33,6 @@ export default function *renderView() {
       </Provider>)
 
     this.body = ReactDOM.renderToString(<Html component={component} assetPath={assetPath} store={store} />)
-    let head = Helmet.rewind();
+    let head = Helmet.rewind()
   })
 }

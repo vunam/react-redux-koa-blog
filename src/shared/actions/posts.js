@@ -3,7 +3,7 @@ const host = (process.browser) ? '' : ':3000'
 
 const fetchPosts = (page = null) => (
   new Promise((resolve, reject) => {
-    Request.get(`${host}/api/get_latest_posts${page ? `?page=${page}` : ''}`).end((err, res) => {
+    Request.get(`${host}/api/posts/latest${page ? `?page=${page}` : ''}`).end((err, res) => {
       if (err) reject(err)
       resolve(res.body)
     })
@@ -12,7 +12,7 @@ const fetchPosts = (page = null) => (
 
 const fetchPostBySeo = (seoName) => {
   return new Promise((resolve, reject) => {
-    Request.get(host + '/api/get_post/' + seoName).end((err, res) => {
+    Request.get(host + '/api/posts/get/' + seoName).end((err, res) => {
       if (err) reject(err)
       resolve(res.body)
     })
