@@ -4,15 +4,14 @@ const path = require('path')
 
 module.exports = {
   context: path.join(__dirname, '../'),
-  entry: [
-    './src/client/index.jsx',
-    'webpack-dev-server/client?http://localhost:8080/',
-    'webpack/hot/only-dev-server'
-  ],
+  entry: {
+    app: ['./src/client/index.jsx'],
+    backend: ['./src/client/index.jsx'],
+  },
   output: {
-    filename: 'app.js',
-    path: path.resolve('./dist'),
-    publicPath: 'http://localhost:8080/'
+    publicPath: '/assets/',
+    filename: '[name]/bundle.js',
+    path: path.resolve('../dist')
   },
   module: {
     loaders: [
@@ -29,7 +28,7 @@ module.exports = {
     configFile: path.resolve('.eslintrc')
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('[name]/styles.css'),
+    new webpack.HotModuleReplacementPlugin() 
   ]
 }

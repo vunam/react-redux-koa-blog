@@ -1,55 +1,43 @@
 import React, { Component, PropTypes } from 'react'
-import Helmet from 'react-helmet'
-import Header from '../../components/Header/Header.jsx'
-import Footer from '../../components/Footer/Footer.jsx'
-import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import { connect } from 'react-redux'
-import * as actions from '../../../actions/posts'
-if (typeof window !== 'undefined') require('./Home.scss')
+import TinyMCE from 'react-tinymce'
+if (typeof window !== 'undefined') require('./Cms.scss')
 
 @connect(state => ({
   posts: state.posts.latests
 }))
-class Home extends Component {
+class Cms extends Component {
 
   static propTypes = {
     posts: PropTypes.array
   };
 
-  componentDidMount() {
-    actions.getPosts()
-    this.updateScrollPosition()
-  }
-
-  getHead() {
-    return {
-      title: 'React Blog - Latest posts',
-      meta: [
-        { name: 'description', content: 'Helmet application' },
-        { property: 'og:type', content: 'article' }
-      ]
-    }
-  }
-
-  updateScrollPosition() {
-    const hash = window.decodeURIComponent(window.location.hash)
-    if (hash === '') return
-    const element = document.querySelector(hash)
-    if (element) element.scrollIntoView()
-  }
-
   render() {
     const { posts } = this.props
-    const head = this.getHead()
     return (
-      <div className="Home">
-        <Helmet { ...head } />
-        <Header />
-        <ArticleContainer posts={ posts } />
-        <Footer />
+      <div className="Cms">
+        <div>
+          <ul>
+            { posts.map((post) => (<li>{post.title}</li>)) }
+          </ul>
+        </div>
+        <div>
+          <input type="text" className="title" />
+          <input type="text" className="author" />
+          <input type="text" className="publish" />
+          <input type="text" className="tags" />
+          <input type="text" className="categories" />
+          <TinyMCE className="content"
+            content="<p>Initial content</p>"
+            config={{
+              plugins: 'link image code',
+              toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+            }}
+          />
+        </div>
       </div>
     )
   }
 }
 
-export default Home
+export default Cms

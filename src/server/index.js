@@ -10,6 +10,7 @@ const port = 3000
 
 app.use(KoaRoute.get('/api/posts/latest', apiHandler.getLatestPosts))
 app.use(KoaRoute.get('/api/posts/get/:data', apiHandler.getPost))
+app.use(KoaRoute.get('/cms/*', appHandler))
 app.use(KoaRoute.get('/*', appHandler))
 
 app.listen(port, () => {

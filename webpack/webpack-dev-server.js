@@ -1,13 +1,17 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var path = require('path');
-var config = require('./dev.config.js')
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const path = require('path');
+const config = require('./dev.config.js')
 
-var port = 8080
+config.entry.app.unshift(
+    'webpack-dev-server/client?http://localhost:8080/',
+    'webpack/hot/dev-server')
 
-var devServerConfig = {
+const port = 8080
+
+const devServerConfig = {
   contentBase: path.join(__dirname, '../'),
-  hot: true,
+  hot: false,
   quiet: false,
   noInfo: false,
   lazy: false,
@@ -18,11 +22,12 @@ var devServerConfig = {
   watchOptions: {
     poll: true
   },
+  publicPath: '/assets/',
   proxy: {'*': 'http://localhost:3000'},
   headers: {'Access-Control-Allow-Origin': '*'}
 }
 
-var server = new WebpackDevServer(webpack(config), devServerConfig);
+const server = new WebpackDevServer(webpack(config), devServerConfig);
 
 server.listen(port, function() {
   console.log(`!  🍕  ====  Webpack dev server running at port: `, port)

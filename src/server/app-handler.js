@@ -5,16 +5,16 @@ import ReactDOM from 'react-dom/server'
 import Helmet from 'react-helmet'
 import { RouterContext, match } from 'react-router'
 import createLocation from 'history/lib/createLocation'
-import routes from '../shared/routes.jsx'
+import config from '../shared/config'
 import Html from '../shared/base/Html.jsx'
 
 import { Provider } from 'react-redux'
 import configureStore from '../shared/helpers/store'
 import * as actions from '../shared/actions/posts'
 
-const assetPath = 'http://localhost:8080'
-
 export default function *renderView() {
+  const type = this.url.startsWith(config.backend.baseUrl) ? 'backend' : 'app'
+  const { routes } = config[type]
   const location = createLocation(this.url)
   const store = configureStore()
 
@@ -32,7 +32,6 @@ export default function *renderView() {
         <RouterContext { ...renderProps } />
       </Provider>)
 
-    this.body = ReactDOM.renderToString(<Html component={component} assetPath={assetPath} store={store} />)
-    let head = Helmet.rewind()
+    this.body = ReactDOM.renderToString(<Html component={component} location={location} type={type} store={store} />)
   })
 }

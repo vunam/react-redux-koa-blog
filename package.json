@@ -4,7 +4,8 @@
   "description": "Creating a simple blog in ReactJS",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrent \"node ./webpack/webpack-dev-server.js\" \"nodemon --watch src/shared/ . --harmony\"",
+    "dev": "concurrent \"node webpack/webpack-dev-server.js\" \"nodemon --watch src/shared/ . --harmony\"",
+    "webpack": "webpack --bail --colors --config webpack/dev.config.js",
     "test": "mocha --require babel-core/register --recursive",
     "eslint": "mocha --require babel-core/register --recursive"
   },
