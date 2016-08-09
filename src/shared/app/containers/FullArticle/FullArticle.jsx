@@ -34,6 +34,8 @@ export default class FullArticle extends Component {
     return { title }
   }
 
+  static fetchData = ({ dispatch }, props, location) => dispatch(actions.getPostBySeo(location.pathname.replace('/article/', '')))
+
   render() {
     const { post } = this.props
     if (!post) return null

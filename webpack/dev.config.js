@@ -6,7 +6,7 @@ module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: ['./src/client/index.jsx'],
-    backend: ['./src/client/index.jsx'],
+    backend: ['./src/client/index.jsx']
   },
   output: {
     publicPath: '/assets/',
@@ -29,6 +29,6 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('[name]/styles.css'),
-    new webpack.HotModuleReplacementPlugin() 
+    new webpack.HotModuleReplacementPlugin()
   ]
 }

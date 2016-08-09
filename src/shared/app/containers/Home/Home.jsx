@@ -15,7 +15,7 @@ class Home extends Component {
   static propTypes = {
     posts: PropTypes.array,
     getPosts: PropTypes.func
-  };
+  }
 
   componentDidMount() {
     const { getPosts } = this.props
@@ -39,6 +39,8 @@ class Home extends Component {
     const element = document.querySelector(hash)
     if (element) element.scrollIntoView()
   }
+
+  static fetchData = ({ dispatch }) => dispatch(actions.getPosts())
 
   render() {
     const { posts } = this.props
