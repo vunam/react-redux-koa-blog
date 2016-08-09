@@ -18,7 +18,7 @@ class Cms extends Component {
       <div className="Cms">
         <div>
           <ul>
-            { posts.map((post) => (<li>{post.title}</li>)) }
+            { posts.map((post, i) => (<li key={i}>{post.title}<button>edit</button></li>)) }
           </ul>
         </div>
         <div>

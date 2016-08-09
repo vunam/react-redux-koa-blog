@@ -1,53 +1,41 @@
-import Request from 'superagent'
-const host = (process.browser) ? '' : ':3000'
+import { req } from '../helpers/api-fetch'
 
-const fetchPosts = (page = null) => (
-  new Promise((resolve, reject) => {
-    Request.get(`${host}/api/posts/latest${page ? `?page=${page}` : ''}`).end((err, res) => {
-      if (err) reject(err)
-      resolve(res.body)
-    })
-  })
-)
+const fetchPost = (search) =>
+  req(`posts/get/${search}`)
+  .then((res) => res.json())
 
-const fetchPostBySeo = (seoName) => {
-  return new Promise((resolve, reject) => {
-    Request.get(host + '/api/posts/get/' + seoName).end((err, res) => {
-      if (err) reject(err)
-      resolve(res.body)
-    })
-  })
-}
+const fetchPosts = (page) =>
+  req(`posts/latest${page ? `?page=${page}` : ''}`)
+  .then((res) => res.json())
 
-export function getPosts() {
-  return {
-    type: 'GET_POSTS',
-    payload: {
-      promise: fetchPosts()
-    }
-  }
-}
+export const getPosts = (page = null) =>
+  (dispatch) =>
+    fetchPosts(page)
+    .then((res) => dispatch({
+      type: 'GET_POSTS',
+      res
+    }))
+    .catch((err) => { throw new Error(err) })
 
-export function getAdditionalPosts() {
-  return {
-    type: 'GET_ADDITIONAL_POSTS',
-    payload: {
-      promise: fetchPosts()
-    }
-  }
-}
+export const getAdditionalPosts = (page = null) =>
+  (dispatch) =>
+    fetchPosts(page)
+    .then((res) => dispatch({
+      type: 'GET_ADDITIONAL_POSTS',
+      res
+    }))
+    .catch((err) => { throw new Error(err) })
 
-export function clearPost() {
+export const getPostBySeo = (search) =>
+  (dispatch) =>
+    fetchPost(search)
+    .then((res) => dispatch({
+      type: 'GET_POST',
+      res
+    }))
+
+export const clearPost = () => {
   return {
     type: 'CLEAR_POST'
-  }
-}
-
-export function getPostBySeo(seoName) {
-  return {
-    type: 'GET_POST',
-    payload: {
-      promise: fetchPostBySeo(seoName)
-    }
   }
 }

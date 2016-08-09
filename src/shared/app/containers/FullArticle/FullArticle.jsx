@@ -29,7 +29,6 @@ export default class FullArticle extends Component {
     this.props.clearPost()
   }
 
-
   getHead() {
     const { post: { title } } = this.props
     return { title }

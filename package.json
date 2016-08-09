@@ -13,8 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "concise.css": "^3.3.0",
+    "dotenv": "^2.0.0",
     "history": "^2.0.0",
     "immutable": "^3.7.6",
+    "isomorphic-fetch": "^2.2.1",
     "koa": "^1.1.2",
     "koa-route": "^2.4.2",
     "lowdb": "^0.12.2",
@@ -26,8 +28,6 @@
     "react-router": "^2.0.0",
     "react-tinymce": "^0.5.1",
     "redux": "^3.0.5",
-    "redux-promise-middleware": "^2.3.3",
-    "redux-saga": "^0.7.0",
     "redux-thunk": "^1.0.3"
   },
   "devDependencies": {

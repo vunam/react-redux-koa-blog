@@ -9,15 +9,17 @@ if (typeof window !== 'undefined') require('./Home.scss')
 
 @connect(state => ({
   posts: state.posts.latests
-}))
+}), actions)
 class Home extends Component {
 
   static propTypes = {
-    posts: PropTypes.array
+    posts: PropTypes.array,
+    getPosts: PropTypes.func
   };
 
   componentDidMount() {
-    actions.getPosts()
+    const { getPosts } = this.props
+    getPosts()
     this.updateScrollPosition()
   }
 

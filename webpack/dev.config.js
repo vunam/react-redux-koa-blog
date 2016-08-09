@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
-  context: path.join(__dirname, '../'),
+  context: path.resolve(__dirname, '../'),
   entry: {
     app: ['./src/client/index.jsx'],
     backend: ['./src/client/index.jsx'],
