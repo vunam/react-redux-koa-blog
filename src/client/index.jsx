@@ -10,7 +10,6 @@ const { routes } = config[type]
 
 const initState = window.__store
 const store = configureStore(initState)
-require('concise.css/dist/concise.min.css')
 require('../shared/base/base.scss')
 
 render(

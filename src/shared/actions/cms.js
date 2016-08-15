@@ -1,8 +1,6 @@
-import Request from 'superagent'
-import { fetchPost } from 'superagent'
-const host = (process.browser) ? '' : ':3000'
+import { req } from '../helpers/api-fetch'
 
-export function putCmsPost() {
+export const putCmsPost = () => {
   return {
     type: 'PUT_POST',
     payload: {
@@ -11,11 +9,20 @@ export function putCmsPost() {
   }
 }
 
-export function editPost(id) {
+export const editPost = (post) => {
   return {
     type: 'EDIT_POST',
-    payload: {
-      promise: fetchPost(id)
-    }
+    post
   }
 }
+
+export const savePost = (post) =>
+  (dispatch) =>
+    req('posts/put', {
+      method: 'PUT',
+      body: post
+    })
+    .then((res) => dispatch({
+      type: 'PUT_POST_SUCCESS',
+      res
+    }))

@@ -3,11 +3,12 @@ const WebpackDevServer = require('webpack-dev-server')
 const path = require('path')
 const config = require('./dev.config.js')
 
-config.entry.app.unshift(
-    'webpack-dev-server/client?http://localhost:8080/',
-    'webpack/hot/dev-server')
 
-const port = 8080
+const port = 8000
+
+config.entry.app.unshift(
+    'webpack-dev-server/client?http://localhost:' + port + '/',
+    'webpack/hot/dev-server')
 
 const devServerConfig = {
   contentBase: path.join(__dirname, '../'),
@@ -23,7 +24,7 @@ const devServerConfig = {
     poll: true
   },
   publicPath: '/assets/',
-  proxy: { '*': 'http://localhost:3000' },
+  proxy: { '*': 'http://localhost:4000' },
   headers: { 'Access-Control-Allow-Origin': '*' }
 }
 

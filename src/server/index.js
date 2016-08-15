@@ -6,7 +6,7 @@ import * as apiHandler from './api-handler'
 import appHandler from './app-handler'
 
 const app = koa()
-const port = 3000
+const port = 4000
 
 app.use(KoaRoute.get('/api/posts/latest', apiHandler.getLatestPosts))
 app.use(KoaRoute.get('/api/posts/get/:data', apiHandler.getPost))
