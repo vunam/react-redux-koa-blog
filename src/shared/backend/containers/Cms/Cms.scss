@@ -1,2 +1,12 @@
-.Home {
+.Cms {
+    display: flex;
+    flex-direction: row;
+}
+
+.Cms-side {
+    flex: 1;
+}
+
+.Cms-content {
+    flex: 2;
 }

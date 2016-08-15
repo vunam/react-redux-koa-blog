@@ -28,6 +28,7 @@
     "react-router": "^2.0.0",
     "react-tinymce": "^0.5.1",
     "redux": "^3.0.5",
+    "redux-form": "^5.3.2",
     "redux-thunk": "^1.0.3"
   },
   "devDependencies": {

@@ -1,21 +1,13 @@
-import Request from 'superagent'
-import { fetchPost } from 'superagent'
-const host = (process.browser) ? '' : ':3000'
-
 export function putCmsPost() {
   return {
     type: 'PUT_POST',
-    payload: {
-      promise: null
-    }
+    post: null
   }
 }
 
-export function editPost(id) {
+export function editPost(post) {
   return {
     type: 'EDIT_POST',
-    payload: {
-      promise: fetchPost(id)
-    }
+    post
   }
 }
