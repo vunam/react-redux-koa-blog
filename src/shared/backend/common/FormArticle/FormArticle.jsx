@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { reduxForm } from 'redux-form'
 import TinyMCE from 'react-tinymce'
 
-export const fields = ['title', 'subTitle', 'author', 'date', 'published', 'lead', 'text', 'seoName', 'tags', 'categories', 'image']
+export const formFields = ['title', 'subTitle', 'author', 'date', 'published', 'lead', 'text', 'seoName', 'tags', 'categories', 'image']
 
 @reduxForm({
   form: 'cmsArticle',
-  fields
+  fields: formFields
 })
 class FormArticle extends Component {
 
@@ -29,9 +29,25 @@ class FormArticle extends Component {
     // })
   }
 
+  getFormValues = (form) => {
+    if (!form) return {};
+    return Object.keys(form).filter((key) => !key.startsWith('_')).reduce((prev, key) => {
+      prev[key] = form[key].value;
+      return prev;
+    }, {});
+  }
+
   saveArticle = () => {
-    const { savePost } = this.props
-    savePost()
+    const { savePost, fields, values } = this.props
+    // const formData = 
+    // console.log(fields)
+    // const formData = Object.keys(fields).reduce((prev, next) => {
+    //   if (next !== 'title') return prev
+    //   prev.append(next, fields[next].value)
+    //   console.log('next', fields[next])
+    //   return prev
+    // }, new FormData())
+    savePost(values)
   }
 
   render() {

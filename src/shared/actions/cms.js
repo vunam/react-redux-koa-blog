@@ -1,3 +1,4 @@
+import { getPosts } from './posts'
 import { req } from '../helpers/api-fetch'
 
 export const putCmsPost = () => {
@@ -20,9 +21,15 @@ export const savePost = (post) =>
   (dispatch) =>
     req('posts/put', {
       method: 'PUT',
-      body: post
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(post)
     })
-    .then((res) => dispatch({
-      type: 'PUT_POST_SUCCESS',
-      res
-    }))
+    .then((res) => {
+      dispatch({
+        type: 'PUT_POST_SUCCESS',
+        res
+      })
+      dispatch(getPosts())
+    })

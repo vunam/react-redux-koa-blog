@@ -3,15 +3,17 @@ import storage from 'lowdb/file-async'
 
 const db = low('db.json', { storage })
 
-// Push a post into the database
-// db('posts').push({ 
-//   title: 'A blog title', 
-//   subTitle: 'A sub title', 
-//   author: 'An author',
-//   date: '2016-01-20T12:00:00',
-//   published: true,
-//   text: 'Text'
-// })
+function genericResponse(status, data = {}, message = null) {
+  return {
+    status,
+    data,
+    message
+  }
+}
+
+function savePost(post) {
+  return db('posts').push(post)
+}
 
 function requestPosts() {
   return db('posts')
@@ -42,6 +44,13 @@ export function *getPost(data) {
   // add request by id later
   const response = yield requestPostBySeo(data)
   this.body = response
+}
+
+export function *putPost() {
+  yield this.request.body
+  const post = this.request.body
+  savePost(this.request.body)
+  this.body = genericResponse('success')
 }
 
 export function *getCategory(category) {
