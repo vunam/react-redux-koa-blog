@@ -5,3 +5,5 @@ dist/**
 content.md
 jsconfig.json
 .vscode
+db-copy.json
+tsconfig.json

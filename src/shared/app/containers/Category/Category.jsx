@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
+import { connect } from 'react-redux'
 import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
-import { connect } from 'react-redux'
 import * as actions from '../../../actions/posts'
+
 if (typeof window !== 'undefined') require('./Category.scss')
 
 @connect(state => ({
   posts: state.posts.latests
 }))
 class Category extends Component {
-
   static propTypes = {
     posts: PropTypes.array
   };

@@ -41,7 +41,8 @@ export default function *renderView() {
     }
     fetchedData = fetchAppData(store, renderProps, location)
       .then(renderApp)
-      .then((res) => view = res)
+      .then((res) => { view = res })
+    view = renderApp()
   })
   yield fetchedData
   this.body = view

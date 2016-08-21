@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import SideArticles from '../../common/SideArticles/SideArticles'
 import FormArticle from '../../common/FormArticle/FormArticle'
-import { connect } from 'react-redux'
 import * as postsActions from '../../../actions/posts'
 import * as cmsActions from '../../../actions/cms'
+
 if (typeof window !== 'undefined') require('./Cms.scss')
 
 @connect(state => ({

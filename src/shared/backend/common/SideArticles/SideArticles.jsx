@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as postsActions from '../../../actions/posts'
 import * as cmsActions from '../../../actions/cms'
 import { strToShortDateTime } from '../../../helpers/dates.js'
+
 if (typeof window !== 'undefined') require('./SideArticles.scss')
 
 @connect(state => ({

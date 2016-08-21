@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
 import { strToShortDateTime } from '../../../helpers/dates.js'
+
 if (typeof window !== 'undefined') require('./Article.scss')
 
 export default class Article extends Component {
@@ -16,7 +17,7 @@ export default class Article extends Component {
     image: PropTypes.string,
     categories: PropTypes.array,
     tags: PropTypes.array
-  };
+  }
 
   displayDate = () => {
     const { date } = this.props
@@ -25,12 +26,12 @@ export default class Article extends Component {
 
   displayTitle = () => {
     const { type, title, seoName } = this.props
-    return (type === 'full') ? title : <Link to={ '/article/' + seoName }>{ title }</Link>
+    return (type === 'full') ? title : <Link to={`/article/${seoName}`}>{ title }</Link>
   }
 
   displayText = () => {
     const { type, text, lead, seoName } = this.props
-    if (type === 'full') return <div dangerouslySetInnerHTML={{ __html: text } }/>
+    if (type === 'full') return <div dangerouslySetInnerHTML={ { __html: text } } />
     return <p>{ lead } <Link to={ `/article/${seoName}` }>Read more &raquo;</Link></p>
   }
 
@@ -48,6 +49,7 @@ export default class Article extends Component {
         </div>
       )
     }
+    return null
   }
 
   showTags = () => {
@@ -59,6 +61,7 @@ export default class Article extends Component {
         </div>
       )
     }
+    return null
   }
 
   render() {
@@ -73,12 +76,12 @@ export default class Article extends Component {
                 <time dateTime={ date }>{ this.displayDate() }</time>
               </span> / <span className="Article-author">{ author }</span>
             </div>
-            <h1 className="Article-title" role="title">
+            <h1 className="Article-title">
               { this.displayTitle() }
             </h1>
             <h2 className="Article-subTitle">{subTitle}</h2>
           </header>
-          { image ? <img onClick={ this.goToArticle } className="Article-image" src={image} /> : '' }
+          { image ? <img onClick={ this.goToArticle } className="Article-image" src={image} alt="" /> : '' }
           <div className="Article-text">
             { this.displayText() }
           </div>

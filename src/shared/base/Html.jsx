@@ -16,7 +16,7 @@ export default class Html extends Component {
           { head.title.toComponent() }
           { head.meta.toComponent() }
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <script dangerouslySetInnerHTML={{ __html: `window.__store=${state};` }} charSet="UTF-8"/>
+          <script dangerouslySetInnerHTML={{ __html: `window.store=${state};` }} charSet="UTF-8"/>
           <link rel="stylesheet" type="text/css" media="screen" href={`/assets/${type}/styles.css`} />
         </head>
         <body>

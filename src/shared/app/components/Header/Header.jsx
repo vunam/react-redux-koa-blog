@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 if (typeof window !== 'undefined') require('./Header.scss')
 
 export default class Header extends Component {

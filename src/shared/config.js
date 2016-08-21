@@ -1,6 +1,6 @@
+import path from 'path'
 import { routes as appRoutes } from './app/routes.jsx'
 import { routes as backendRoutes } from './backend/routes.jsx'
-import path from 'path'
 
 export default ({
   app: {

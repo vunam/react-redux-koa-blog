@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import Article from '../../components/Article/Article.jsx'
-import { connect } from 'react-redux'
-import { Link } from 'react-router'
 import * as actions from '../../../actions/posts'
+
 if (typeof window !== 'undefined') require('./FullArticle.scss')
 
 @connect(state => ({
@@ -19,6 +20,8 @@ export default class FullArticle extends Component {
     history: PropTypes.object,
     clearPost: PropTypes.func
   }
+
+  static fetchData = ({ dispatch }, props, location) => dispatch(actions.getPostBySeo(location.pathname.replace('/article/', '')))
 
   componentWillMount() {
     const { getPostBySeo, params } = this.props
@@ -34,8 +37,6 @@ export default class FullArticle extends Component {
     return { title }
   }
 
-  static fetchData = ({ dispatch }, props, location) => dispatch(actions.getPostBySeo(location.pathname.replace('/article/', '')))
-
   render() {
     const { post } = this.props
     if (!post) return null
@@ -46,9 +47,12 @@ export default class FullArticle extends Component {
         <Helmet { ...head } />
         <Article type="full" {...post} />
         <div className="FullArticle-foot">
-          <Link className="FullArticle-backLink" to={{
-            pathname: '/',
-            hash: (post ? '#' + post.seoName : '') }}
+          <Link
+            className="FullArticle-backLink"
+            to={{
+              pathname: '/',
+              hash: (post ? `#${post.seoName}` : '')
+            }}
           >
             &laquo; Back to home
           </Link>

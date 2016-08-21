@@ -34,8 +34,6 @@ export const getPostBySeo = (search) =>
       res
     }))
 
-export const clearPost = () => {
-  return {
-    type: 'CLEAR_POST'
-  }
-}
+export const clearPost = () => ({
+  type: 'CLEAR_POST'
+})

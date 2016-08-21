@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm, reset } from 'redux-form'
-import { connect } from 'react-redux'
 import TinyMCE from 'react-tinymce'
 
 export const formName = 'cmsArticle'
@@ -8,9 +7,9 @@ export const formFields = ['uuid', 'title', 'subTitle', 'author', 'date', 'publi
 
 @reduxForm({
   form: formName,
-  fields: formFields
+  fields: formFields,
+  reset
 })
-@connect(null, { reset })
 class FormArticle extends Component {
 
   static propTypes = {
@@ -23,17 +22,18 @@ class FormArticle extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { fields: { text } } = nextProps
-    const editorLead = tinymce.EditorManager.get(this.refs.editorLead.id) // eslint-disable-line
+    const editorLead = tinymce.EditorManager.get(this.editorLead.id) // eslint-disable-line
     if (!text.touched && text.value !== editorLead.getContent({ format: 'raw' })) editorLead.setContent(nextProps.fields.text.value)
-    const editorText = tinymce.EditorManager.get(this.refs.editorText.id) // eslint-disable-line
+    const editorText = tinymce.EditorManager.get(this.editorText.id) // eslint-disable-line
     if (!text.touched && text.value !== editorText.getContent({ format: 'raw' })) editorText.setContent(nextProps.fields.text.value)
   }
 
   getFormValues = (form) => {
     if (!form) return {}
-    return Object.keys(form).filter((key) => !key.startsWith('_')).reduce((prev, key) => {
-      return { ...prev, [key]: form[key].value }
-    }, {})
+    return Object
+      .keys(form)
+      .filter((key) => !key.startsWith('_'))
+      .reduce((prev, key) => ({ ...prev, [key]: form[key].value }), {})
   }
 
   saveArticle = () => {
@@ -56,44 +56,45 @@ class FormArticle extends Component {
     return (
       <div className="FormArticle">
         <div>
-          <input type="text" className="FormArticle-uuid" { ...uuid } />
+          <input type="text" className="FormArticle-uuid" {...uuid} />
           <p>
             <label>Date</label>
-            <input type="text" className="FormArticle-date" placeholder="..." { ...date } />
+            <input type="text" className="FormArticle-date" placeholder="..." {...date} />
           </p>
           <p>
             <label>Title</label>
-            <input type="text" className="FormArticle-title" placeholder="..." { ...title } />
+            <input type="text" className="FormArticle-title" placeholder="..." {...title} />
           </p>
           <p>
             <label>Seo</label>
-            <input type="text" className="FormArticle-seoName" placeholder="..." { ...seoName } />
+            <input type="text" className="FormArticle-seoName" placeholder="..." {...seoName} />
           </p>
           <p>
             <label>Sub title</label>
-            <input type="text" className="FormArticle-subTitle" placeholder="..." { ...subTitle } />
+            <input type="text" className="FormArticle-subTitle" placeholder="..." {...subTitle} />
           </p>
           <p>
             <label>Author</label>
-            <input type="text" className="FormArticle-author" placeholder="..." { ...author } />
+            <input type="text" className="FormArticle-author" placeholder="..." {...author} />
           </p>
           <p>
             <label>Published</label>
-            <input type="checkbox" className="FormArticle-published" placeholder="..." { ...published } />
+            <input type="checkbox" className="FormArticle-published" placeholder="..." {...published} />
           </p>
           <p>
             <label>Tags</label>
-            <input type="text" className="FormArticle-tags" placeholder="..." { ...tags } />
+            <input type="text" className="FormArticle-tags" placeholder="..." {...tags} />
           </p>
           <p>
             <label>Categories</label>
-            <input type="text" className="FormArticle-categories" placeholder="..." { ...categories } />
+            <input type="text" className="FormArticle-categories" placeholder="..." {...categories} />
           </p>
           <p>
             <label>Lead</label>
-            <TinyMCE className="FormArticle-lead"
-              ref="editorLead"
-              content={ lead.value }
+            <TinyMCE
+              className="FormArticle-lead"
+              ref={(c) => { this.editorLead = c }}
+              content={lead.value}
               onChange={this.handleEditorChange}
               config={{
                 plugins: 'link image code',
@@ -103,9 +104,10 @@ class FormArticle extends Component {
           </p>
           <p>
             <label>Text</label>
-            <TinyMCE className="FormArticle-text"
-              ref="editorText"
-              content={ text.value }
+            <TinyMCE
+              className="FormArticle-text"
+              ref={(c) => { this.editorText = c }}
+              content={text.value }
               onChange={this.handleEditorChange}
               config={{
                 plugins: 'link image code',
@@ -115,11 +117,11 @@ class FormArticle extends Component {
           </p>
           <p>
             <label>Image</label>
-            <img src={ image.value } />
+            <img src={image.value } alt="Current" />
             <input type="file" className="FormArticle-image" placeholder="..." />
           </p>
-          <button onClick={ this.saveArticle }>Save</button>
-          <button onClick={ this.resetArticle }>Reset</button>
+          <button onClick={this.saveArticle }>Save</button>
+          <button onClick={this.resetArticle }>Reset</button>
         </div>
       </div>
     )

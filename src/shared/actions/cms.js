@@ -1,27 +1,19 @@
 import { getPosts } from './posts'
 import { req } from '../helpers/api-fetch'
 
-export const putCmsPost = () => {
-  return {
-    type: 'PUT_POST',
-    payload: {
-      promise: null
-    }
+export const putCmsPost = () => ({
+  type: 'PUT_POST',
+  payload: {
+    promise: null
   }
-}
+})
 
-export const clearEditPost = () => {
-  return {
-    type: 'CLEAR_EDIT_POST'
-  }
-}
+export const clearEditPost = () => ({ type: 'CLEAR_EDIT_POST' })
 
-export const editPost = (post) => {
-  return {
-    type: 'EDIT_POST',
-    post
-  }
-}
+export const editPost = (post) => ({
+  type: 'EDIT_POST',
+  post
+})
 
 export const savePost = (post) =>
   (dispatch) =>

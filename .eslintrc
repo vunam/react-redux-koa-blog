@@ -1,6 +1,10 @@
 {
   "extends": "airbnb",
   "rules": {
+    "jsx-a11y/label-has-for": 0,
+    "react/prefer-stateless-function": 0,
+    "react/jsx-curly-spacing": 0,
+    "global-require": 0,
     "max-len": 0,
     "comma-dangle": [
       2,
