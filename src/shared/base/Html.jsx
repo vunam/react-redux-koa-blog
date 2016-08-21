@@ -21,7 +21,7 @@ export default class Html extends Component {
         </head>
         <body>
           <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
-          <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+          <script src="/assets/js/tinymce/tinymce.min.js"></script>
           <script src={`/assets/${type}/bundle.js`} charSet="UTF-8"/>
         </body>
       </html>

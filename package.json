@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "concurrent \"node webpack/webpack-dev-server.js\" \"nodemon --watch src/shared/ . --harmony\"",
+    "server": "node . --harmony",
     "webpack": "webpack --bail --colors --config webpack/dev.config.js",
     "test": "mocha --require babel-core/register --recursive",
     "eslint": "mocha --require babel-core/register --recursive"
@@ -18,7 +19,9 @@
     "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^1.1.2",
+    "koa-bodyparser": "^2.2.0",
     "koa-route": "^2.4.2",
+    "koa-send": "^3.2.0",
     "lowdb": "^0.12.2",
     "nodemon": "^1.8.1",
     "react": "^0.14.6",
