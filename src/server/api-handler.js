@@ -58,6 +58,5 @@ export function *getCategory(category) {
     .chain()
     .filter({ published: true, categories: category })
     .value()
-
   return cat
 }

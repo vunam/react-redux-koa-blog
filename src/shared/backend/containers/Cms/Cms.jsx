@@ -16,12 +16,18 @@ class Cms extends Component {
     posts: PropTypes.array,
     getPosts: PropTypes.func,
     savePost: PropTypes.func,
-    editedPost: PropTypes.object
+    editedPost: PropTypes.object,
+    clearEditPost: PropTypes.func
   };
 
-  componentDidMount() {
+  componentWillMount() {
     const { getPosts } = this.props
     getPosts()
+  }
+
+  setNewArticle = () => {
+    const { clearEditPost } = this.props
+    clearEditPost()
   }
 
   render() {
@@ -29,10 +35,13 @@ class Cms extends Component {
     return (
       <div className="Cms">
         <div className="Cms-side">
+          <div className="">
+            <button onClick={ this.setNewArticle }>New article</button>
+          </div>
           <SideArticles posts={posts} editedPost={editedPost} />
         </div>
         <div className="Cms-main">
-          <FormArticle initialValues={ editedPost } savePost={ savePost } />
+          <FormArticle initialValues={ editedPost } editedArticle={ editedPost.title ? true : false } savePost={ savePost } />
         </div>
       </div>
     )

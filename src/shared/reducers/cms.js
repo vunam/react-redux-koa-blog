@@ -6,6 +6,12 @@ export default function (state = { editing: false, post: {} }, action) {
         editing: true,
         post: action.post
       }
+    case 'CLEAR_EDIT_POST':
+      return {
+        ...state,
+        editing: false,
+        post: {}
+      }
     case 'SAVE_POST':
       return {
         ...state

@@ -10,6 +10,12 @@ export const putCmsPost = () => {
   }
 }
 
+export const clearEditPost = () => {
+  return {
+    type: 'CLEAR_EDIT_POST'
+  }
+}
+
 export const editPost = (post) => {
   return {
     type: 'EDIT_POST',

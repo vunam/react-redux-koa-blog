@@ -1,18 +1,24 @@
 import React, { Component, PropTypes } from 'react'
-import { reduxForm } from 'redux-form'
+import { reduxForm, reset } from 'redux-form'
+import { connect } from 'react-redux'
 import TinyMCE from 'react-tinymce'
 
+export const formName = 'cmsArticle'
 export const formFields = ['title', 'subTitle', 'author', 'date', 'published', 'lead', 'text', 'seoName', 'tags', 'categories', 'image']
 
 @reduxForm({
-  form: 'cmsArticle',
+  form: formName,
   fields: formFields
 })
+@connect(null, { reset })
 class FormArticle extends Component {
 
   static propTypes = {
     fields: PropTypes.object,
-    savePost: PropTypes.func
+    values: PropTypes.object,
+    savePost: PropTypes.func,
+    reset: PropTypes.func,
+    editedArticle: PropTypes.func
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,38 +29,34 @@ class FormArticle extends Component {
     if (!text.touched && text.value !== editorText.getContent({ format: 'raw' })) editorText.setContent(nextProps.fields.text.value)
   }
 
+  getFormValues = (form) => {
+    if (!form) return {}
+    return Object.keys(form).filter((key) => !key.startsWith('_')).reduce((prev, key) => {
+      return { ...prev, [key]: form[key].value }
+    }, {})
+  }
+
+  saveArticle = () => {
+    const { savePost, values } = this.props
+    savePost(values)
+  }
+
+  resetArticle = () => {
+    this.props.reset(formName)
+  }
+
   handleEditorChange = () => {
     // this.setState({
     //   content: e.target.getContent()
     // })
   }
 
-  getFormValues = (form) => {
-    if (!form) return {};
-    return Object.keys(form).filter((key) => !key.startsWith('_')).reduce((prev, key) => {
-      prev[key] = form[key].value;
-      return prev;
-    }, {});
-  }
-
-  saveArticle = () => {
-    const { savePost, fields, values } = this.props
-    // const formData = 
-    // console.log(fields)
-    // const formData = Object.keys(fields).reduce((prev, next) => {
-    //   if (next !== 'title') return prev
-    //   prev.append(next, fields[next].value)
-    //   console.log('next', fields[next])
-    //   return prev
-    // }, new FormData())
-    savePost(values)
-  }
-
   render() {
-    const { fields: { title, subTitle, author, date, published, lead, text, seoName, tags, categories, image } } = this.props
+    const { editedArticle, fields: { title, subTitle, author, date, published, lead, text, seoName, tags, categories, image } } = this.props
     return (
       <div className="FormArticle">
         <div>
+          <input type="checkbox" className="FormArticle-edited" checked={editedArticle} />
           <p>
             <label>Date</label>
             <input type="text" className="FormArticle-date" placeholder="..." { ...date } />
@@ -77,7 +79,7 @@ class FormArticle extends Component {
           </p>
           <p>
             <label>Published</label>
-            <input type="text" className="FormArticle-published" placeholder="..." { ...published } />
+            <input type="checkbox" className="FormArticle-published" placeholder="..." { ...published } />
           </p>
           <p>
             <label>Tags</label>
@@ -117,7 +119,7 @@ class FormArticle extends Component {
             <input type="file" className="FormArticle-image" placeholder="..." />
           </p>
           <button onClick={ this.saveArticle }>Save</button>
-          <button>Reset</button>
+          <button onClick={ this.resetArticle }>Reset</button>
         </div>
       </div>
     )

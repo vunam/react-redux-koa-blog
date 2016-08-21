@@ -19,7 +19,6 @@ class SideArticles extends Component {
   clickEditPost = (post) => {
     const { editPost } = this.props
     editPost(post)
-    // initializeForm('SideArticlesArticle', { title: 'aaaax' } ,['title'])
   }
 
   render() {
