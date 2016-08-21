@@ -1,5 +1,6 @@
 import low from 'lowdb'
 import storage from 'lowdb/file-async'
+import uuid from 'node-uuid'
 
 const db = low('db.json', { storage })
 
@@ -12,7 +13,14 @@ function genericResponse(status, data = {}, message = null) {
 }
 
 function savePost(post) {
-  return db('posts').push(post)
+  if (post.uuid) {
+    return db('posts')
+      .chain()
+      .find({ uuid: post.uuid })
+      .assign(post)
+      .value()
+  }
+  return db('posts').push({ uuid: uuid.v1(), ...post })
 }
 
 function requestPosts() {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import TinyMCE from 'react-tinymce'
 
 export const formName = 'cmsArticle'
-export const formFields = ['title', 'subTitle', 'author', 'date', 'published', 'lead', 'text', 'seoName', 'tags', 'categories', 'image']
+export const formFields = ['uuid', 'title', 'subTitle', 'author', 'date', 'published', 'lead', 'text', 'seoName', 'tags', 'categories', 'image']
 
 @reduxForm({
   form: formName,
@@ -52,11 +52,11 @@ class FormArticle extends Component {
   }
 
   render() {
-    const { editedArticle, fields: { title, subTitle, author, date, published, lead, text, seoName, tags, categories, image } } = this.props
+    const { fields: { uuid, title, subTitle, author, date, published, lead, text, seoName, tags, categories, image } } = this.props
     return (
       <div className="FormArticle">
         <div>
-          <input type="checkbox" className="FormArticle-edited" checked={editedArticle} />
+          <input type="text" className="FormArticle-uuid" { ...uuid } />
           <p>
             <label>Date</label>
             <input type="text" className="FormArticle-date" placeholder="..." { ...date } />

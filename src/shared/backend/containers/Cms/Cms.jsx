@@ -41,7 +41,7 @@ class Cms extends Component {
           <SideArticles posts={posts} editedPost={editedPost} />
         </div>
         <div className="Cms-main">
-          <FormArticle initialValues={ editedPost } editedArticle={ editedPost.title ? true : false } savePost={ savePost } />
+          <FormArticle initialValues={ editedPost } savePost={ savePost } />
         </div>
       </div>
     )
