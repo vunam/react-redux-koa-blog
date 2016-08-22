@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { reduxForm, reset } from 'redux-form'
+import { connect } from 'react-redux'
 import TinyMCE from 'react-tinymce'
+import { domOnlyProps } from '../../../helpers/forms'
 
 export const formName = 'cmsArticle'
 export const formFields = ['uuid', 'title', 'subTitle', 'author', 'date', 'published', 'lead', 'text', 'seoName', 'tags', 'categories', 'image']
 
 @reduxForm({
   form: formName,
-  fields: formFields,
-  reset
+  fields: formFields
 })
+@connect(null, { reset })
 class FormArticle extends Component {
 
   static propTypes = {
@@ -56,38 +58,38 @@ class FormArticle extends Component {
     return (
       <div className="FormArticle">
         <div>
-          <input type="text" className="FormArticle-uuid" {...uuid} />
+          <input type="text" className="FormArticle-uuid" {...domOnlyProps(uuid)} />
           <p>
             <label>Date</label>
-            <input type="text" className="FormArticle-date" placeholder="..." {...date} />
+            <input type="text" className="FormArticle-date" placeholder="..." {...domOnlyProps(date)} />
           </p>
           <p>
             <label>Title</label>
-            <input type="text" className="FormArticle-title" placeholder="..." {...title} />
+            <input type="text" className="FormArticle-title" placeholder="..." {...domOnlyProps(title)} />
           </p>
           <p>
             <label>Seo</label>
-            <input type="text" className="FormArticle-seoName" placeholder="..." {...seoName} />
+            <input type="text" className="FormArticle-seoName" placeholder="..." {...domOnlyProps(seoName)} />
           </p>
           <p>
             <label>Sub title</label>
-            <input type="text" className="FormArticle-subTitle" placeholder="..." {...subTitle} />
+            <input type="text" className="FormArticle-subTitle" placeholder="..." {...domOnlyProps(subTitle)} />
           </p>
           <p>
             <label>Author</label>
-            <input type="text" className="FormArticle-author" placeholder="..." {...author} />
+            <input type="text" className="FormArticle-author" placeholder="..." {...domOnlyProps(author)} />
           </p>
           <p>
             <label>Published</label>
-            <input type="checkbox" className="FormArticle-published" placeholder="..." {...published} />
+            <input type="checkbox" className="FormArticle-published" placeholder="..." {...domOnlyProps(published)} />
           </p>
           <p>
             <label>Tags</label>
-            <input type="text" className="FormArticle-tags" placeholder="..." {...tags} />
+            <input type="text" className="FormArticle-tags" placeholder="..." {...domOnlyProps(tags)} />
           </p>
           <p>
             <label>Categories</label>
-            <input type="text" className="FormArticle-categories" placeholder="..." {...categories} />
+            <input type="text" className="FormArticle-categories" placeholder="..." {...domOnlyProps(categories)} />
           </p>
           <p>
             <label>Lead</label>
