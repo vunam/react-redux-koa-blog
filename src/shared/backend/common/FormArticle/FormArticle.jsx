@@ -1,8 +1,11 @@
 import React, { Component, PropTypes } from 'react'
-import { reduxForm, reset } from 'redux-form'
+import { reduxForm, reset, change } from 'redux-form'
 import { connect } from 'react-redux'
 import TinyMCE from 'react-tinymce'
+import UrlSafeString from 'url-safe-string'
 import { domOnlyProps } from '../../../helpers/forms'
+
+const tagGenerator = new UrlSafeString()
 
 export const formName = 'cmsArticle'
 export const formFields = ['uuid', 'title', 'subTitle', 'author', 'date', 'published', 'lead', 'text', 'seoName', 'tags', 'categories', 'image']
@@ -11,7 +14,7 @@ export const formFields = ['uuid', 'title', 'subTitle', 'author', 'date', 'publi
   form: formName,
   fields: formFields
 })
-@connect(null, { reset })
+@connect(null, { reset, change })
 class FormArticle extends Component {
 
   static propTypes = {
@@ -19,15 +22,20 @@ class FormArticle extends Component {
     values: PropTypes.object,
     savePost: PropTypes.func,
     reset: PropTypes.func,
+    change: PropTypes.func,
     editedArticle: PropTypes.func
   }
 
   componentWillReceiveProps(nextProps) {
-    const { fields: { text } } = nextProps
+    const { fields: { text, lead, title } } = nextProps
     const editorLead = tinymce.EditorManager.get(this.editorLead.id) // eslint-disable-line
-    if (!text.touched && text.value !== editorLead.getContent({ format: 'raw' })) editorLead.setContent(nextProps.fields.text.value)
+    if (!lead.touched && lead.value !== editorLead.getContent({ format: 'raw' })) editorLead.setContent(nextProps.fields.lead.value)
     const editorText = tinymce.EditorManager.get(this.editorText.id) // eslint-disable-line
     if (!text.touched && text.value !== editorText.getContent({ format: 'raw' })) editorText.setContent(nextProps.fields.text.value)
+
+    if (text.value !== nextProps.fields.text.value) {
+      editorText.setContent(nextProps.fields.text.value)
+    }
   }
 
   getFormValues = (form) => {
@@ -47,10 +55,11 @@ class FormArticle extends Component {
     this.props.reset(formName)
   }
 
-  handleEditorChange = () => {
-    // this.setState({
-    //   content: e.target.getContent()
-    // })
+  handleEditorChange = (field) => {
+    const editorId = (field === 'lead') ? this.editorLead.id : this.editorText.id
+    const editor = tinymce.EditorManager.get(editorId) // eslint-disable-line
+
+    this.props.change(formName, field, editor.getContent({ format: 'raw' }))
   }
 
   render() {
@@ -69,7 +78,7 @@ class FormArticle extends Component {
           </p>
           <p>
             <label>Seo</label>
-            <input type="text" className="FormArticle-seoName" placeholder="..." {...domOnlyProps(seoName)} />
+            <input type="text" className="FormArticle-seoName" placeholder="..." {...domOnlyProps(seoName)} value={tagGenerator.generate(title.value)} />
           </p>
           <p>
             <label>Sub title</label>
@@ -97,7 +106,7 @@ class FormArticle extends Component {
               className="FormArticle-lead"
               ref={(c) => { this.editorLead = c }}
               content={lead.value}
-              onChange={this.handleEditorChange}
+              onChange={() => this.handleEditorChange('lead')}
               config={{
                 plugins: 'link image code',
                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
@@ -110,7 +119,7 @@ class FormArticle extends Component {
               className="FormArticle-text"
               ref={(c) => { this.editorText = c }}
               content={text.value }
-              onChange={this.handleEditorChange}
+              onChange={() => this.handleEditorChange('text')}
               config={{
                 plugins: 'link image code',
                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'

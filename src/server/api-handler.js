@@ -20,7 +20,14 @@ function savePost(post) {
       .assign(post)
       .value()
   }
-  return db.get('posts').push({ uuid: uuid.v1(), ...post })
+  return db
+    .get('posts')
+    .push({
+      uuid: uuid.v1(),
+      date: new Date().toISOString(),
+      ...post
+    })
+    .value()
 }
 
 function requestPosts() {
@@ -59,7 +66,7 @@ export function *getPost(data) {
 export function *putPost() {
   yield this.request.body
   const post = this.request.body
-  savePost(this.request.body)
+  console.log(savePost(this.request.body))
   this.body = genericResponse('success')
 }
 
