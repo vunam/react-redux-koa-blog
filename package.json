@@ -13,7 +13,6 @@
   "author": "Vu Nam Nguyen <vu@strangelab.co.uk",
   "license": "ISC",
   "dependencies": {
-    "concise.css": "^3.4.0",
     "dotenv": "^2.0.0",
     "history": "2.0.0",
     "isomorphic-fetch": "^2.2.1",
@@ -47,6 +46,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
+    "concise.css": "^3.4.0",
     "concurrently": "^2.2.0",
     "css-loader": "^0.23.1",
     "enzyme": "^2.4.1",
@@ -74,17 +74,5 @@
     "superagent": "^2.2.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.14.1"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react",
-      "stage-0"
-    ],
-    "plugins": [
-      "transform-es2015-modules-commonjs",
-      "transform-react-constant-elements",
-      "transform-decorators-legacy"
-    ]
   }
 }
