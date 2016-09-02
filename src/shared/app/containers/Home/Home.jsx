@@ -6,7 +6,7 @@ import Footer from '../../components/Footer/Footer.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import * as actions from '../../../actions/posts'
 
-if (typeof window !== 'undefined') require('./Home.scss')
+if (process.browser) require('./Home.scss')
 
 @connect(state => ({
   posts: state.posts.latests

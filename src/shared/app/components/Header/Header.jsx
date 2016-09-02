@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
-if (typeof window !== 'undefined') require('./Header.scss')
+// Find out why the occurrence of extract text plugin begins with Header.css
+if (process.browser) require('../../../base/concise.scss')
+if (process.browser) require('./Header.scss')
 
 export default class Header extends Component {
   render() {

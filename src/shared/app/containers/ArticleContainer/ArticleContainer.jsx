@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Article from '../../components/Article/Article.jsx'
 import * as actions from '../../../actions/posts'
 
-if (typeof window !== 'undefined') require('./ArticleContainer.scss')
+if (process.browser) require('./ArticleContainer.scss')
 
 @connect(null, actions)
 export default class ArticleContainer extends Component {

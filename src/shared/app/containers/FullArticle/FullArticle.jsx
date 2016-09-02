@@ -7,7 +7,7 @@ import Footer from '../../components/Footer/Footer.jsx'
 import Article from '../../components/Article/Article.jsx'
 import * as actions from '../../../actions/posts'
 
-if (typeof window !== 'undefined') require('./FullArticle.scss')
+if (process.browser) require('./FullArticle.scss')
 
 @connect(state => ({
   post: state.posts.current

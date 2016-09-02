@@ -1,5 +1,6 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack')
+const OccurrenceOrderPlugin = require('webpack/lib/optimize/OccurrenceOrderPlugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
 
 module.exports = {
@@ -14,9 +15,12 @@ module.exports = {
     path: path.resolve('../dist')
   },
   module: {
+    preLoaders: [
+      { test: /\.scss$/, loader: 'sass' }
+    ],
     loaders: [
       { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel', 'eslint-loader'] },
-      { test: /\.css$/, loader: 'css!' },
+      { test: /\.css$/, loader: 'css' },
       { test: /\.scss$/, loader: ExtractTextPlugin.extract('raw') }
     ]
   },
@@ -28,6 +32,7 @@ module.exports = {
     configFile: path.resolve('.eslintrc')
   },
   plugins: [
+    new OccurrenceOrderPlugin(false),
     new ExtractTextPlugin('[name]/styles.css'),
     new webpack.HotModuleReplacementPlugin()
   ]

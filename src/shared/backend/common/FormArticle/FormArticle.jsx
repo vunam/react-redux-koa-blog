@@ -27,15 +27,14 @@ class FormArticle extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { fields: { text, lead, title } } = nextProps
+    const { fields: { text, lead } } = nextProps
     const editorLead = tinymce.EditorManager.get(this.editorLead.id) // eslint-disable-line
     if (!lead.touched && lead.value !== editorLead.getContent({ format: 'raw' })) editorLead.setContent(nextProps.fields.lead.value)
     const editorText = tinymce.EditorManager.get(this.editorText.id) // eslint-disable-line
     if (!text.touched && text.value !== editorText.getContent({ format: 'raw' })) editorText.setContent(nextProps.fields.text.value)
 
-    if (text.value !== nextProps.fields.text.value) {
-      editorText.setContent(nextProps.fields.text.value)
-    }
+    if (text.value !== nextProps.fields.text.value) editorText.setContent(nextProps.fields.text.value)
+    if (lead.value !== nextProps.fields.lead.value) editorText.setContent(nextProps.fields.lead.value)
   }
 
   getFormValues = (form) => {

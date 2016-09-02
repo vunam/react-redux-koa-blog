@@ -5,7 +5,7 @@ import FormArticle from '../../common/FormArticle/FormArticle'
 import * as postsActions from '../../../actions/posts'
 import * as cmsActions from '../../../actions/cms'
 
-if (typeof window !== 'undefined') require('./Cms.scss')
+if (process.browser) require('./Cms.scss')
 
 @connect(state => ({
   posts: state.posts.latests,

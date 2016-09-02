@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
 import { strToShortDateTime } from '../../../helpers/dates.js'
 
-if (typeof window !== 'undefined') require('./Article.scss')
+if (process.browser) require('./Article.scss')
 
 export default class Article extends Component {
   static propTypes = {

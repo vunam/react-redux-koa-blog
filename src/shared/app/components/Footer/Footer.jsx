@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-if (typeof window !== 'undefined') require('./Footer.scss')
+if (process.browser) require('./Footer.scss')
 
 export default class Footer extends Component {
   render() {
