@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
-import Header from '../../components/Header/Header.jsx'
-import Footer from '../../components/Footer/Footer.jsx'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import * as actions from '../../../actions/posts'
 
@@ -44,9 +42,7 @@ class Category extends Component {
     return (
       <div className="Category">
         <Helmet { ...head } />
-        <Header />
         <ArticleContainer posts={ posts } />
-        <Footer />
       </div>
     )
   }

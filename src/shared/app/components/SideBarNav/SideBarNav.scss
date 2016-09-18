@@ -1,0 +1,19 @@
+.SideBarNav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 0;
+  background: #333;
+  z-index: 1;
+  overflow: hidden;
+  transition: all .5s linear;
+  &-inner {
+    width: 240px;
+  }
+  &.is-open {
+    transition: none;
+    right: -240px;
+    width: 240px;
+  }
+}

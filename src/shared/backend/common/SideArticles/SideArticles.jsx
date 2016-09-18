@@ -28,13 +28,14 @@ class SideArticles extends Component {
       <div className="SideArticles">
         <table className="SideArticles-table table-full">
           <tbody>
-          { posts.map((post, i) => (
-            <tr key={i}>
-              <td>{ post.title }<span className="SideArticles-date">{ strToShortDateTime(post.date) }</span></td>
-              <td>
-                <button onClick={() => this.clickEditPost(post)}>edit</button>
-              </td>
-            </tr>)) }
+            { posts.map((post, i) => (
+              <tr key={i}>
+                <td>{ post.title }<span className="SideArticles-date">{ strToShortDateTime(post.date) }</span></td>
+                <td>
+                  <button onClick={() => this.clickEditPost(post)}>edit</button>
+                </td>
+              </tr>)
+            )}
           </tbody>
         </table>
       </div>

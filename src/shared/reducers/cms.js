@@ -21,6 +21,6 @@ export default function (state = { editing: false, post: {} }, action) {
         ...state
       }
     default:
-      return { ...state }
+      return state
   }
 }

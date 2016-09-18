@@ -32,7 +32,7 @@ export default class Article extends Component {
   displayText = () => {
     const { type, text, lead, seoName } = this.props
     if (type === 'full') return <div dangerouslySetInnerHTML={ { __html: text } } />
-    return <p>{ lead } <Link to={ `/article/${seoName}` }>Read more &raquo;</Link></p>
+    return [<div key="lead" dangerouslySetInnerHTML={ { __html: lead } } />, <Link key="link" to={ `/article/${seoName}` }>Read more &raquo;</Link>]
   }
 
   goToArticle = () => {

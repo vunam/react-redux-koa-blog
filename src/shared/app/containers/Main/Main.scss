@@ -1,0 +1,32 @@
+.Main {
+  &.is-slided {
+    overflow: hidden;
+    > .Main-content {
+      transform: translate(-240px, 0);
+    }
+  }
+}
+
+.Main-content {
+  position: relative;
+  transform: translate(0, 0);
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  transition: transform 0.5s ease-out;
+}
+
+.Main-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out;
+  &.is-visible {
+    opacity: 0.3;
+  }
+}
