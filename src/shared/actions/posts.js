@@ -4,15 +4,16 @@ const fetchPost = (search) =>
   req(`posts/get/${search}`)
   .then((res) => res.json())
 
-const fetchPosts = (page) =>
-  req(`posts/latest${page ? `?page=${page}` : ''}`)
+const fetchPosts = (page, cat) =>
+  req(`posts/${cat}${page ? `?page=${page}` : ''}`)
   .then((res) => res.json())
 
-export const getPosts = (page = null) =>
+export const getPosts = (page = null, category = 'latests') =>
   (dispatch) =>
-    fetchPosts(page)
+    fetchPosts(page, category)
     .then((res) => dispatch({
       type: 'GET_POSTS',
+      category,
       res
     }))
     .catch((err) => { throw new Error(err) })

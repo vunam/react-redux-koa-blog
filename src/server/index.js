@@ -11,7 +11,7 @@ const port = 4000
 
 
 app.use(bodyParser())
-app.use(KoaRoute.get('/api/posts/latest', apiHandler.getLatestPosts))
+app.use(KoaRoute.get('/api/posts/*', apiHandler.getPosts))
 app.use(KoaRoute.get('/api/posts/get/:data', apiHandler.getPost))
 app.use(KoaRoute.put('/api/posts/put', apiHandler.putPost))
 app.use(KoaRoute.get('/cms/*', appHandler))

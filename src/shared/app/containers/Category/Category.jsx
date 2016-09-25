@@ -8,15 +8,25 @@ if (process.browser) require('./Category.scss')
 
 @connect(state => ({
   posts: state.posts.latests
-}))
+}), actions)
 class Category extends Component {
   static propTypes = {
-    posts: PropTypes.array
+    posts: PropTypes.array,
+    params: PropTypes.object,
+    getPosts: PropTypes.func
   };
 
+  static fetchData = ({ dispatch }, props, { pathname }) => dispatch(actions.getPosts(pathname.replace('/category/', '')))
+
   componentDidMount() {
-    actions.getPosts()
-    this.updateScrollPosition()
+    const { params, getPosts } = this.props
+    getPosts(null, params.cat)
+  }
+
+  componentWillReceiveProps(newProps) {
+    const { getPosts, params: { cat } } = this.props
+    const newCat = newProps.params.cat
+    if (cat !== newCat) getPosts(null, newCat)
   }
 
   getHead() {

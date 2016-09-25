@@ -30,11 +30,15 @@ function savePost(post) {
     .value()
 }
 
-function requestPosts() {
+function requestPosts({ cat }) {
   return db
     .get('posts')
     .chain()
-    .filter({ published: true })
+    .filter((item) => {
+      if (!item.published
+      || (cat && cat !== 'latests' && Array.isArray(item.categories) && !item.categories.includes(cat))) return null
+      return item
+    })
     .reverse()
     .take(8)
     .value()
@@ -52,8 +56,8 @@ function requestPostBySeo(name) {
   return post[0]
 }
 
-export function *getLatestPosts() {
-  const response = yield requestPosts()
+export function *getPosts(cat) {
+  const response = yield requestPosts({ cat })
   this.body = response
 }
 

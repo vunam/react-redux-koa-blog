@@ -57,8 +57,7 @@
       "published": true,
       "categories": [
         "general",
-        "all",
-        "travel"
+        "all"
       ],
       "tags": [
         "tag",
@@ -84,8 +83,13 @@
     {
       "uuid": "f6854290-7111-11e6-9c60-41ae63fc0f9d",
       "date": "2016-09-02T13:34:24.569Z",
-      "title": "test",
-      "published": true
+      "title": "test travel",
+      "published": true,
+      "categories": [
+        "general",
+        "all",
+        "travel"
+      ]
     }
   ]
 }
