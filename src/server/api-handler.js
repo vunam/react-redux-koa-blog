@@ -1,6 +1,8 @@
 import low from 'lowdb'
 import storage from 'lowdb/lib/file-async'
 import uuid from 'node-uuid'
+import queryString from 'query-string'
+import config from '../config/config'
 
 const db = low('db.json', { storage })
 
@@ -30,18 +32,31 @@ function savePost(post) {
     .value()
 }
 
-function requestPosts({ cat }) {
-  return db
+function requestPosts({ cat }, page) {
+  const currentPage = page || 1
+  const all = db
     .get('posts')
-    .chain()
     .filter((item) => {
       if (!item.published
-      || (cat && cat !== 'latests' && Array.isArray(item.categories) && !item.categories.includes(cat))) return null
+      || (cat && cat !== 'latest' && Array.isArray(item.categories) && !item.categories.includes(cat))) return null
       return item
     })
+    .chain()
+
+  const size = all.size()
+
+  const offset = (currentPage - 1) * config.postsPerPage
+
+  const posts = all
     .reverse()
-    .take(8)
+    .slice(offset)
+    .take(config.postsPerPage)
     .value()
+
+  return {
+    size,
+    posts
+  }
 }
 
 function requestPostBySeo(name) {
@@ -57,7 +72,8 @@ function requestPostBySeo(name) {
 }
 
 export function *getPosts(cat) {
-  const response = yield requestPosts({ cat })
+  const query = queryString.parse(this.req._parsedUrl.query)
+  const response = yield requestPosts({ cat }, query.p)
   this.body = response
 }
 
@@ -70,7 +86,6 @@ export function *getPost(data) {
 export function *putPost() {
   yield this.request.body
   const post = this.request.body
-  console.log(savePost(this.request.body))
   this.body = genericResponse('success')
 }
 

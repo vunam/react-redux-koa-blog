@@ -7,7 +7,7 @@ import { strToShortDateTime } from '../../../helpers/dates.js'
 if (process.browser) require('./SideArticles.scss')
 
 @connect(state => ({
-  posts: state.posts.latests,
+  posts: state.posts.list,
   editedPost: state.cms.post
 }), { ...postsActions, ...cmsActions })
 class SideArticles extends Component {

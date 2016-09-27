@@ -1,13 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import Helmet from 'react-helmet'
 import { connect } from 'react-redux'
+import queryString from 'query-string'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import * as actions from '../../../actions/posts'
 
 if (process.browser) require('./Category.scss')
 
 @connect(state => ({
-  posts: state.posts.latests
+  posts: state.posts.list
 }), actions)
 class Category extends Component {
   static propTypes = {
@@ -16,17 +17,20 @@ class Category extends Component {
     getPosts: PropTypes.func
   };
 
-  static fetchData = ({ dispatch }, props, { pathname }) => dispatch(actions.getPosts(pathname.replace('/category/', '')))
+  static fetchData = ({ dispatch }, props, { pathname, search }) => {
+    const { p } = queryString.parse(search)
+    return dispatch(actions.getPosts(pathname.replace('/category/', '')), p)
+  }
 
   componentDidMount() {
     const { params, getPosts } = this.props
-    getPosts(null, params.cat)
+    getPosts(params.cat)
   }
 
   componentWillReceiveProps(newProps) {
     const { getPosts, params: { cat } } = this.props
     const newCat = newProps.params.cat
-    if (cat !== newCat) getPosts(null, newCat)
+    if (cat !== newCat) getPosts(newCat)
   }
 
   getHead() {

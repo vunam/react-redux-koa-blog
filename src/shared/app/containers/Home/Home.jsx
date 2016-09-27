@@ -7,7 +7,7 @@ import * as actions from '../../../actions/posts'
 if (process.browser) require('./Home.scss')
 
 @connect(state => ({
-  posts: state.posts.latests
+  posts: state.posts.list
 }), actions)
 class Home extends Component {
   static propTypes = {
@@ -15,11 +15,11 @@ class Home extends Component {
     getPosts: PropTypes.func
   }
 
-  static fetchData = ({ dispatch }) => dispatch(actions.getPosts())
+  static fetchData = ({ dispatch }) => dispatch(actions.getPosts('latest'))
 
   componentDidMount() {
     const { getPosts } = this.props
-    getPosts()
+    getPosts('latest')
     this.updateScrollPosition()
   }
 

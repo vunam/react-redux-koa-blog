@@ -5,19 +5,21 @@ import * as actions from '../../../actions/posts'
 
 if (process.browser) require('./ArticleContainer.scss')
 
-@connect(null, actions)
+@connect((state) => ({ total: state.posts.total }), actions)
 export default class ArticleContainer extends Component {
   static propTypes = {
     posts: PropTypes.array,
-    getAdditionalPosts: PropTypes.func
+    getAdditionalPosts: PropTypes.func,
+    total: PropTypes.number
   };
 
   render() {
-    const { posts, getAdditionalPosts } = this.props
+    const { posts, getAdditionalPosts, total } = this.props
     return (
       <section className="ArticleContainer">
+        {/* !posts.length && <p>There are no posts on this page</p> */}
         { posts.map((post, i) => <Article key={i} {...post} type="preview" />) }
-        <button className="ArticleContainer-loadMore" onClick={ () => getAdditionalPosts() }>Load more</button>
+        { posts.length < total && <button className="ArticleContainer-loadMore" onClick={ () => getAdditionalPosts() }>Load more</button> }
       </section>
     )
   }

@@ -8,15 +8,15 @@ This is a simple blog using technologies such as React, Redux, Node, Koa etc. Te
 
 - ~~Header~~
 - ~~Articles~~
-- Pagination / Infinity scroll
+- ~~Pagination~~
 - ~~CSS~~
-- Editor
+- ~~Editor~~
 - ~~Images~~
-- Menu button
-- Sidebar
+- ~~Menu button~~
+- ~~Sidebar~~
 - ~~More button~~
 - ~~Detail page~~
-- Group by topix / date
+- ~~Group by categories~~
 - Disqus
 - SEO
 - Metadata

@@ -8,7 +8,7 @@ import * as cmsActions from '../../../actions/cms'
 if (process.browser) require('./Cms.scss')
 
 @connect(state => ({
-  posts: state.posts.latests,
+  posts: state.posts.list,
   editedPost: state.cms.post
 }), { ...postsActions, ...cmsActions })
 class Cms extends Component {

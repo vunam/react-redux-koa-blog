@@ -4,28 +4,37 @@ const fetchPost = (search) =>
   req(`posts/get/${search}`)
   .then((res) => res.json())
 
-const fetchPosts = (page, cat) =>
-  req(`posts/${cat}${page ? `?page=${page}` : ''}`)
+const fetchPosts = (cat, page, all) =>
+  req(`posts/${cat}?${page ? `p=${page}` : ''}${all ? '&all=1' : ''}`)
   .then((res) => res.json())
 
-export const getPosts = (page = null, category = 'latests') =>
-  (dispatch) =>
-    fetchPosts(page, category)
+export const setCategory = (category) => ({
+  type: 'SET_CATEGORY',
+  category
+})
+
+export const getPosts = (category, page = 1, all = false) =>
+  (dispatch) => {
+    dispatch(setCategory(category))
+    return fetchPosts(category, page, all)
     .then((res) => dispatch({
       type: 'GET_POSTS',
       category,
       res
     }))
     .catch((err) => { throw new Error(err) })
+  }
 
-export const getAdditionalPosts = (page = null) =>
-  (dispatch) =>
-    fetchPosts(page)
+export const getAdditionalPosts = () =>
+  (dispatch, getState) => {
+    const { posts: { category, index } } = getState()
+    fetchPosts(category, index + 1)
     .then((res) => dispatch({
       type: 'GET_ADDITIONAL_POSTS',
       res
     }))
     .catch((err) => { throw new Error(err) })
+  }
 
 export const getPostBySeo = (search) =>
   (dispatch) =>

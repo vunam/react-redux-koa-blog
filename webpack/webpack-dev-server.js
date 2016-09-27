@@ -18,7 +18,8 @@ const devServerConfig = {
   lazy: false,
   stats: {
     chunks: false,
-    colors: true
+    colors: true,
+    children: false
   },
   watchOptions: {
     poll: true
