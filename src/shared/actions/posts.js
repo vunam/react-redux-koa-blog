@@ -1,11 +1,12 @@
+import { stringify } from 'query-string'
 import { req } from '../helpers/api-fetch'
 
 const fetchPost = (search) =>
   req(`posts/get/${search}`)
   .then((res) => res.json())
 
-const fetchPosts = (cat, page, all) =>
-  req(`posts/${cat}?${page ? `p=${page}` : ''}${all ? '&all=1' : ''}`)
+const fetchPosts = (cat, query) =>
+  req(`posts/${cat}?${stringify(query)}`)
   .then((res) => res.json())
 
 export const setCategory = (category) => ({
@@ -13,10 +14,10 @@ export const setCategory = (category) => ({
   category
 })
 
-export const getPosts = (category, page = 1, all = false) =>
+export const getPosts = (category, query) =>
   (dispatch) => {
     dispatch(setCategory(category))
-    return fetchPosts(category, page, all)
+    return fetchPosts(category, query)
     .then((res) => dispatch({
       type: 'GET_POSTS',
       category,
@@ -28,7 +29,7 @@ export const getPosts = (category, page = 1, all = false) =>
 export const getAdditionalPosts = () =>
   (dispatch, getState) => {
     const { posts: { category, index } } = getState()
-    fetchPosts(category, index + 1)
+    fetchPosts(category, { p: index + 1 })
     .then((res) => dispatch({
       type: 'GET_ADDITIONAL_POSTS',
       res

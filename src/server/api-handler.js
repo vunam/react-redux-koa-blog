@@ -32,26 +32,33 @@ function savePost(post) {
     .value()
 }
 
-function requestPosts({ cat }, page) {
-  const currentPage = page || 1
+function requestPosts({ cat }, query) {
+  const currentPage = query.p || 1
   const all = db
     .get('posts')
     .filter((item) => {
-      if (!item.published
-      || (cat && cat !== 'latest' && Array.isArray(item.categories) && !item.categories.includes(cat))) return null
+      if (
+        (typeof query.published === 'undefined' && !item.published)
+        || (typeof query.published !== 'undefined' && query.published !== 'all' && query.published !== item.published)
+        || (cat && cat !== 'latest' && Array.isArray(item.categories) && !item.categories.includes(cat))
+      ) {
+        return null
+      }
       return item
     })
     .chain()
 
   const size = all.size()
-
   const offset = (currentPage - 1) * config.postsPerPage
 
-  const posts = all
-    .reverse()
-    .slice(offset)
-    .take(config.postsPerPage)
-    .value()
+  let posts = all.reverse()
+
+  if (query.published !== 'all') {
+    posts = posts
+      .slice(offset)
+      .take(config.postsPerPage)
+      .value()
+  }
 
   return {
     size,
@@ -73,7 +80,7 @@ function requestPostBySeo(name) {
 
 export function *getPosts(cat) {
   const query = queryString.parse(this.req._parsedUrl.query)
-  const response = yield requestPosts({ cat }, query.p)
+  const response = yield requestPosts({ cat }, query)
   this.body = response
 }
 

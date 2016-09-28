@@ -23,7 +23,7 @@ class Cms extends Component {
 
   componentWillMount() {
     const { getPosts } = this.props
-    getPosts()
+    getPosts('latest', { published: 'all' })
   }
 
   setNewArticle = () => {
