@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import reduxThunk from 'redux-thunk'
-import * as reducers from '../reducers'
+import * as defaultReducers from '../reducers'
 
 const middleware = [reduxThunk]
 
-export default function configureStore(initialState) {
-  const combinedReducer = combineReducers(reducers)
+export default function configureStore(initialState, reducers) {
+  const combinedReducer = combineReducers(reducers || defaultReducers)
   let finalCreateStore
 
   if (process.browser) {

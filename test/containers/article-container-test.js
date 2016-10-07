@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'enzyme';
-import { expect } from 'chai'
+import { assert } from 'chai'
 import sinon from 'sinon'
 
 import ArticleContainer from '../../src/shared/app/containers/ArticleContainer/ArticleContainer.jsx'
@@ -19,16 +19,16 @@ describe('<ArticleContainer />', () => {
   const component = render(<WrappedComponent posts={posts} />)
 
   it('Renders ok', function() {
-    expect(component).to.be.ok
+    assert.ok(component)
   })
 
   it('Has ArticleList', function() {
     const node = component.find('.ArticleContainer')
-    expect(node).to.have.length(1)
+    assert.equal(node.length, 1)
   })
 
   it('Has at least 3 articles', function() {
     const nodes = component.find('.ArticleContainer').find('article')
-    expect(nodes).to.have.length.of.at.least(3)
+    assert.isAtLeast(nodes.length, 3)
   })
 })

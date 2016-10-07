@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'enzyme';
-import { expect } from 'chai'
+import { assert } from 'chai'
 import sinon from 'sinon'
 import mockData from '../../db.json'
 
@@ -13,40 +13,37 @@ describe('<Article />', () => {
   const component = render(<Article {...data} />)
 
   it('Renders ok', function() {
-    expect(component).to.be.ok
+    assert.ok(component)
   })
 
   it('Has one h1 tag with correct title', function() {
     const node = component.find('h1')
-    expect(node).to.have.length(1)
-    expect(node.text()).to.have.length.of.at.least(1)
-    expect(node.text()).to.equal(data.title)
+    assert.equal(node.length, 1)
+    assert.equal(node.text(), data.title)
   })
 
   it('Has text', function() {
     const node = component.find('.Article-text')
-    expect(node).to.have.length(1)
-    expect(node.text()).to.have.length.of.at.least(100)
+    assert.equal(node.length, 1)
+    assert.isAtLeast(node.text().length, 100)
   })
 
   it('Has header', function() {
     const node = component.find('header')
-    expect(node).to.have.length(1)
+    assert.equal(node.length, 1)
   })
 
   it('Has correct time', function() {
     const node = component.find('time')
     const text = node.text()
-    expect(node).to.have.length(1)
-    expect(text).to.have.length.of.at.least(1)
-    expect(text).to.equal(strToShortDateTime(text))
+    assert.equal(node.length, 1)
+    assert.equal(text, strToShortDateTime(text))
   })
 
   it('Has correct author', function() {
     const node = component.find('.Article-author')
     const text = node.text()
-    expect(node).to.have.length(1)
-    expect(text).to.have.length.of.at.least(1)
-    expect(text).to.equal(data.author)
+    assert.equal(node.length, 1)
+    assert.equal(text, data.author)
   })
 })

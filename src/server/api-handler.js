@@ -79,6 +79,7 @@ function requestPostBySeo(name) {
 }
 
 export function *getPosts(cat) {
+  console.log('req', this.req._parsedUrl)
   const query = queryString.parse(this.req._parsedUrl.query)
   const response = yield requestPosts({ cat }, query)
   this.body = response

@@ -6,7 +6,7 @@ const fetchPost = (search) =>
   .then((res) => res.json())
 
 const fetchPosts = (cat, query) =>
-  req(`posts/${cat}?${stringify(query)}`)
+  req(`posts/${cat}${query ? '?' : ''}${stringify(query)}`)
   .then((res) => res.json())
 
 export const setCategory = (category) => ({
@@ -18,12 +18,18 @@ export const getPosts = (category, query) =>
   (dispatch) => {
     dispatch(setCategory(category))
     return fetchPosts(category, query)
-    .then((res) => dispatch({
-      type: 'GET_POSTS',
-      category,
-      res
-    }))
-    .catch((err) => { throw new Error(err) })
+    .then((res) => {
+      dispatch(setCategory('called'))
+      dispatch({
+        type: 'GET_POSTS',
+        category,
+        res
+      })
+    })
+    .catch((err) => {
+      dispatch(setCategory(err))
+      throw new Error(err)
+    })
   }
 
 export const getAdditionalPosts = () =>

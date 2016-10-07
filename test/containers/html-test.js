@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'enzyme';
-import { expect } from 'chai'
+import { assert } from 'chai'
 import sinon from 'sinon'
 import configureStore from '../../src/shared/helpers/store'
 import Html from '../../src/shared/base/Html.jsx'
@@ -12,11 +12,11 @@ describe('<Html />', () => {
   const wrapper = render(<Html store={store} component={""} bundle={""} />)
 
   it('Renders ok', function() {
-    expect(wrapper).to.be.ok
+    assert.ok(wrapper)
   })
 
   it('Contains root element', function() {
     const node = wrapper.find('#root')
-    expect(node).to.have.length(1)
+    assert.equal(node.length, 1)
   })
 })
