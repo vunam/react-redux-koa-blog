@@ -1,18 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import Radium from 'radium'
 import SideArticles from '../../common/SideArticles/SideArticles'
 import FormArticle from '../../common/FormArticle/FormArticle'
 import * as postsActions from '../../../actions/posts'
 import * as cmsActions from '../../../actions/cms'
-
-if (process.browser) require('./Cms.scss')
+import styles from './styles'
 
 @connect(state => ({
   posts: state.posts.list,
   editedPost: state.cms.post
 }), { ...postsActions, ...cmsActions })
+@Radium
 class Cms extends Component {
-
   static propTypes = {
     posts: PropTypes.array,
     getPosts: PropTypes.func,
@@ -34,14 +34,14 @@ class Cms extends Component {
   render() {
     const { posts, editedPost, savePost } = this.props
     return (
-      <div className="Cms">
-        <div className="Cms-side">
-          <div className="">
+      <div style={ styles.Cms }>
+        <div style={ styles.CmsSide }>
+          <div>
             <button onClick={ this.setNewArticle }>New article</button>
           </div>
           <SideArticles posts={posts} editedPost={editedPost} />
         </div>
-        <div className="Cms-main">
+        <div style={ styles.CmsMain }>
           <FormArticle initialValues={ editedPost.uuid ? editedPost : { published: true }} savePost={ savePost } />
         </div>
       </div>

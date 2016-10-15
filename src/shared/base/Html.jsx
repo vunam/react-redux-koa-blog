@@ -2,7 +2,11 @@ import 'babel-polyfill'
 import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom/server'
 import Helmet from 'react-helmet'
+import { Style } from 'radium'
+import Radium from '../helpers/radium'
+import styles from './styles.js'
 
+@Radium
 export default class Html extends Component {
 
   render() {
@@ -16,10 +20,10 @@ export default class Html extends Component {
           { head.title.toComponent() }
           { head.meta.toComponent() }
           <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <script dangerouslySetInnerHTML={{ __html: `window.store=${state};` }} charSet="UTF-8"/>
-          <link rel="stylesheet" type="text/css" media="screen" href={`/assets/${type}/styles.css`} />
+          <script dangerouslySetInnerHTML={{ __html: `window.store=${state};` }} charSet="UTF-8" />
         </head>
         <body>
+          <Style rules={ styles } />
           <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
           <script src="/assets/js/tinymce/tinymce.min.js"></script>
           <script src={`/assets/${type}/bundle.js`} charSet="UTF-8"/>

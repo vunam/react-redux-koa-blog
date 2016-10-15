@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
 import { strToShortDateTime } from '../../../helpers/dates.js'
+import Radium from '../../../helpers/radium'
+import styles from './styles'
 
-if (process.browser) require('./Article.scss')
-
+@Radium
 export default class Article extends Component {
   static propTypes = {
     type: PropTypes.string,
@@ -44,7 +45,7 @@ export default class Article extends Component {
     const { categories } = this.props
     if (categories && categories.length) {
       return (
-        <div className="Article-categories">
+        <div style={ styles.ArticleCategories }>
           Categories: { categories.map((cat, i) => <Link key={i} to={`/category/${cat}`}>{`#${cat} `}</Link>) }
         </div>
       )
@@ -56,7 +57,7 @@ export default class Article extends Component {
     const { tags } = this.props
     if (tags && tags.length) {
       return (
-        <div className="Article-tags">
+        <div style={ styles.ArticleTags }>
           Tags: { tags.map((tag, i) => <Link key={i} to={`/tag/${tag}`}>{`#${tag} `}</Link>) }
         </div>
       )
@@ -68,21 +69,21 @@ export default class Article extends Component {
     const { type, subTitle, author, date, image, seoName } = this.props
 
     return (
-      <article id={ seoName } className={`Article Article--${type}`}>
-        <section className="Article-content">
+      <article id={ seoName } style={[styles.Article, styles[`Article--${type}`]]}>
+        <section style={ styles.ArticleContent }>
           <header>
-            <div className="Article-meta">
-              <span className="Article-date">
+            <div style={ styles.ArticleMeta }>
+              <span style={ styles.ArticleDate }>
                 <time dateTime={ date }>{ this.displayDate() }</time>
-              </span> / <span className="Article-author">{ author }</span>
+              </span> / <span style={ styles.ArticleAuthor }>{ author }</span>
             </div>
-            <h1 className="Article-title">
+            <h1 style={ styles.ArticleTitle }>
               { this.displayTitle() }
             </h1>
-            <h2 className="Article-subTitle">{subTitle}</h2>
+            <h2 style={ styles.ArticleSubTitle }>{subTitle}</h2>
           </header>
-          { image ? <img onClick={ this.goToArticle } className="Article-image" src={image} alt="" /> : '' }
-          <div className="Article-text">
+          { image ? <img onClick={ this.goToArticle } style={ styles.ArticleImage } src={image} alt="" /> : '' }
+          <div style={ styles.ArticleText }>
             { this.displayText() }
           </div>
           { this.showTags() }

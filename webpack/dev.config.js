@@ -19,9 +19,7 @@ module.exports = {
       { test: /\.scss$/, loader: 'sass' }
     ],
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel', 'eslint-loader'] },
-      { test: /\.css$/, loader: 'css' },
-      { test: /\.scss$/, loader: ExtractTextPlugin.extract('raw') }
+      { test: /\.jsx?$/, exclude: /node_modules/, loaders: ['react-hot', 'babel', 'eslint-loader'] }
     ]
   },
   resolve: {
@@ -33,7 +31,6 @@ module.exports = {
   },
   plugins: [
     new OccurrenceOrderPlugin(false),
-    new ExtractTextPlugin('[name]/styles.css'),
     new webpack.HotModuleReplacementPlugin()
   ]
 }

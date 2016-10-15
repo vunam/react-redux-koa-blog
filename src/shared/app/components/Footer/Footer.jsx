@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 
-if (process.browser) require('./Footer.scss')
+import Radium from '../../../helpers/radium'
+import styles from './styles'
 
+@Radium
 export default class Footer extends Component {
   render() {
     return (
-      <section className="Footer">
-        <p className="Footer-info">
+      <section style={ styles.Footer }>
+        <p style={ styles.FooterInfo }>
           Created by&nbsp;
-          <a className="Footer-link" rel="noopener noreferrer" target="_blank" href="mailto:vu@strangelab.co.uk">Vu Nam</a>
+          <a style={ styles.FooterLink } rel="noopener noreferrer" target="_blank" href="mailto:vu@strangelab.co.uk">Vu Nam</a>
           &nbsp; |&nbsp; View project on
-          &nbsp;<a className="Footer-link" rel="noopener noreferrer" target="_blank" href="https://github.com/vunam/">Github</a>
+          &nbsp;<a style={ styles.FooterLink } rel="noopener noreferrer" target="_blank" href="https://github.com/vunam/">Github</a>
         </p>
       </section>
     )

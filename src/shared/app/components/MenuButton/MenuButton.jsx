@@ -2,9 +2,13 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../../actions/navigation'
 
-if (process.browser) require('./MenuButton.scss')
+import Radium from '../../../helpers/radium'
+import styles from './styles.js'
+
+// if (process.browser) require('./MenuButton.scss')
 
 @connect(null, actions)
+@Radium
 export default class MenuButton extends Component {
   static propTypes = {
     opened: PropTypes.bool,
@@ -20,10 +24,10 @@ export default class MenuButton extends Component {
 
   render() {
     return (
-      <button className="MenuButton" onClick={ this.clickHandler }>
-        <div />
-        <div />
-        <div />
+      <button style={ styles.MenuButton } onClick={ this.clickHandler }>
+        <div style={ styles.MenuButtonBar } />
+        <div style={ styles.MenuButtonBar } />
+        <div style={ styles.MenuButtonBar } />
       </button>
     )
   }

@@ -11,7 +11,7 @@ const { routes } = config[type]
 const initState = window.store
 const store = configureStore(initState)
 
-require('../shared/base/base.scss')
+// require('../shared/base/base.scss')
 
 render(
   <Provider store={ store }>

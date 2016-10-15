@@ -4,12 +4,14 @@ import * as postsActions from '../../../actions/posts'
 import * as cmsActions from '../../../actions/cms'
 import { strToShortDateTime } from '../../../helpers/dates.js'
 
-if (process.browser) require('./SideArticles.scss')
+import Radium from '../../../helpers/radium'
+import styles from './styles'
 
 @connect(state => ({
   posts: state.posts.list,
   editedPost: state.cms.post
 }), { ...postsActions, ...cmsActions })
+@Radium
 class SideArticles extends Component {
 
   static propTypes = {
@@ -25,13 +27,13 @@ class SideArticles extends Component {
   render() {
     const { posts } = this.props
     return (
-      <div className="SideArticles">
-        <table className="SideArticles-table table-full">
+      <div className="SideArticles" style={ styles.SideArticles }>
+        <table style={ styles.SideArticlesTable }>
           <tbody>
             { posts.map((post, i) => (
               <tr key={i}>
-                <td>{ post.title }<span className="SideArticles-date">{ strToShortDateTime(post.date) }</span></td>
-                <td>
+                <td style={ styles.SideArticlesTableTd }>{ post.title }<span className="SideArticles-date">{ strToShortDateTime(post.date) }</span></td>
+                <td style={ styles.SideArticlesTableTd }>
                   <button onClick={() => this.clickEditPost(post)}>edit</button>
                 </td>
               </tr>)

@@ -5,11 +5,13 @@ import queryString from 'query-string'
 import ArticleContainer from '../ArticleContainer/ArticleContainer.jsx'
 import * as actions from '../../../actions/posts'
 
-if (process.browser) require('./Category.scss')
+import Radium from '../../../helpers/radium'
+import styles from './styles'
 
 @connect(state => ({
   posts: state.posts.list
 }), actions)
+@Radium
 class Category extends Component {
   static propTypes = {
     posts: PropTypes.array,
@@ -54,7 +56,7 @@ class Category extends Component {
     const { posts } = this.props
     const head = this.getHead()
     return (
-      <div className="Category">
+      <div style={ styles.Category }>
         <Helmet { ...head } />
         <ArticleContainer posts={ posts } />
       </div>

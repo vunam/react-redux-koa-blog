@@ -3,9 +3,13 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as actions from '../../../actions/navigation'
 
-if (process.browser) require('./SideBarNav.scss')
+import Radium from '../../../helpers/radium'
+import styles from './styles'
+
+// if (process.browser) require('./SideBarNav.scss')
 
 @connect(null, actions)
+@Radium
 export default class SideBarNav extends Component {
   static propTypes = {
     opened: PropTypes.bool,
@@ -15,8 +19,8 @@ export default class SideBarNav extends Component {
   render() {
     const { opened, closeMenu } = this.props
     return (
-      <div className={`SideBarNav${opened ? ' is-open' : ''}`}>
-        <div className="SideBarNav-inner">
+      <div style={[styles.SideBarNav, (opened ? styles.SideBarNavIsOpen : null)]}>
+        <div style={ styles.SideBarNavInner }>
           <h3>Navigation</h3>
           <ul>
             <li><Link onClick={ closeMenu } to="/">Home</Link></li>

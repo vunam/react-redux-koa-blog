@@ -5,11 +5,13 @@ import { Link } from 'react-router'
 import Article from '../../components/Article/Article.jsx'
 import * as actions from '../../../actions/posts'
 
-if (process.browser) require('./FullArticle.scss')
+import Radium from '../../../helpers/radium'
+import styles from './styles'
 
 @connect(state => ({
   post: state.posts.current
 }), actions)
+@Radium
 export default class FullArticle extends Component {
   static propTypes = {
     post: PropTypes.object,
@@ -40,12 +42,12 @@ export default class FullArticle extends Component {
     if (!post) return null
     const head = this.getHead()
     return (
-      <div className="FullArticle">
+      <div style={ styles.FullArticle }>
         <Helmet { ...head } />
         <Article type="full" {...post} />
-        <div className="FullArticle-foot">
+        <div style={ styles.FullArticleFoot }>
           <Link
-            className="FullArticle-backLink"
+            style={ styles.FullArticleBackLink }
             to={{
               pathname: '/',
               hash: (post ? `#${post.seoName}` : '')
