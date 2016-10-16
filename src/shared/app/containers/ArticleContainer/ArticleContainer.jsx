@@ -20,7 +20,7 @@ export default class ArticleContainer extends Component {
       <section style={ styles.ArticleContainer }>
         {/* !posts.length && <p>There are no posts on this page</p> */}
         { posts.map((post, i) => <Article key={i} {...post} type="preview" />) }
-        { posts.length < total && <button className="ArticleContainer-loadMore" onClick={ () => getAdditionalPosts() }>Load more</button> }
+        { posts.length < total && <button style={ styles.ArticleContainerLoadMore } onClick={ () => getAdditionalPosts() }>Load more</button> }
       </section>
     )
   }

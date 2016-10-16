@@ -17,5 +17,12 @@ export default {
     width: '100%',
     animation: 'x 1.5s forwards',
     animationName: fadeIn
+  },
+  ArticleContainerLoadMore: {
+    width: '100%',
+    height: '60px',
+    textAlign: 'center',
+    border: 'none',
+    backgroundColor: '#bbb'
   }
 }
