@@ -33,7 +33,7 @@ function savePost(post) {
 }
 
 function requestPosts({ cat }, query) {
-  const currentPage = query.p || 1
+  const currentPage = query.p || 2
   const all = db
     .get('posts')
     .filter((item) => {
@@ -79,7 +79,6 @@ function requestPostBySeo(name) {
 }
 
 export function *getPosts(cat) {
-  console.log('req', this.req._parsedUrl)
   const query = queryString.parse(this.req._parsedUrl.query)
   const response = yield requestPosts({ cat }, query)
   this.body = response
