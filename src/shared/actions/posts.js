@@ -19,7 +19,6 @@ export const getPosts = (category, query) =>
     dispatch(setCategory(category))
     return fetchPosts(category, query)
     .then((res) => {
-      dispatch(setCategory('called'))
       dispatch({
         type: 'GET_POSTS',
         category,

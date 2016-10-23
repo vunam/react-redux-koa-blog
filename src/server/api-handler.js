@@ -33,7 +33,7 @@ function savePost(post) {
 }
 
 function requestPosts({ cat }, query) {
-  const currentPage = query.p || 2
+  const currentPage = query.p || 1
   const all = db
     .get('posts')
     .filter((item) => {
@@ -48,7 +48,7 @@ function requestPosts({ cat }, query) {
     })
     .chain()
 
-  const size = all.size()
+  const total = all.size()
   const offset = (currentPage - 1) * config.postsPerPage
 
   let posts = all.reverse()
@@ -61,7 +61,7 @@ function requestPosts({ cat }, query) {
   }
 
   return {
-    size,
+    total,
     posts
   }
 }

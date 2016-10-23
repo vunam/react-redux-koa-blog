@@ -10,7 +10,7 @@ export default function (state = { list: [], category: 'latest', index: 1, total
       return {
         ...state,
         list: action.res.posts,
-        total: action.res.size,
+        total: action.res.total,
         index: 1
       }
     case 'GET_POST':
