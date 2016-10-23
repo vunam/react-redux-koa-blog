@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Link, browserHistory } from 'react-router'
 import { strToShortDateTime } from '../../../helpers/dates.js'
-import Radium from '../../../helpers/radium'
-import styles from './styles'
+
+import Radium, { getTheme } from '../../../helpers/radium'
+
+const styles = getTheme(require('./styles'))
 
 @Radium
 export default class Article extends Component {

@@ -25,6 +25,12 @@ export default {
     transition: 'opacity 0.5s ease-out'
   },
   MainOverlayIsVisible: {
+    opacity: 0
+  }
+}
+
+export const simple = {
+  MainOverlayIsVisible: {
     opacity: 0.3
   }
 }

@@ -6,8 +6,9 @@ import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import MenuButton from '../../components/MenuButton/MenuButton.jsx'
 
-import Radium from '../../../helpers/radium'
-import styles from './styles.js'
+import Radium, { getTheme } from '../../../helpers/radium'
+
+const styles = getTheme(require('./styles'))
 
 @connect((state) => ({
   opened: state.navigation.opened
@@ -24,7 +25,7 @@ class Main extends Component {
     return (
       <StyleRoot>
         <div style={[styles.Main, (opened ? styles.MainIsSlided : null)] }>
-          <div className="Main-content" style={[styles.MainContent, (opened ? styles.MainContentIsSlided : null)]}>
+          <div style={[styles.MainContent, (opened ? styles.MainContentIsSlided : null)]}>
             <SideBarNav opened={opened} />
             <MenuButton opened={opened} />
             <div style={ [styles.MainOverlay, (opened ? styles.MainOverlayIsVisible : null)] } />

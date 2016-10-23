@@ -2,8 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Article from '../../components/Article/Article.jsx'
 import * as actions from '../../../actions/posts'
-import Radium from '../../../helpers/radium'
-import styles from './styles'
+
+import Radium, { getTheme } from '../../../helpers/radium'
+
+const styles = getTheme(require('./styles'))
 
 @connect((state) => ({ total: state.posts.total }), actions)
 @Radium

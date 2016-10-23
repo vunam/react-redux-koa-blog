@@ -3,8 +3,9 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import * as actions from '../../../actions/navigation'
 
-import Radium from '../../../helpers/radium'
-import styles from './styles'
+import Radium, { getTheme } from '../../../helpers/radium'
+
+const styles = getTheme(require('./styles'))
 
 // if (process.browser) require('./SideBarNav.scss')
 

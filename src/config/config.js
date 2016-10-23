@@ -1,3 +1,4 @@
 export default {
-  postsPerPage: 3
+  postsPerPage: 3,
+  theme: 'simple'
 }

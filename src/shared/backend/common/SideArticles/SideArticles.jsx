@@ -4,8 +4,9 @@ import * as postsActions from '../../../actions/posts'
 import * as cmsActions from '../../../actions/cms'
 import { strToShortDateTime } from '../../../helpers/dates.js'
 
-import Radium from '../../../helpers/radium'
-import styles from './styles'
+import Radium, { getTheme } from '../../../helpers/radium'
+
+const styles = getTheme(require('./styles'))
 
 @connect(state => ({
   posts: state.posts.list,

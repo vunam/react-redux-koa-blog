@@ -2,8 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import * as actions from '../../../actions/navigation'
 
-import Radium from '../../../helpers/radium'
-import styles from './styles.js'
+import Radium, { getTheme } from '../../../helpers/radium'
+
+const styles = getTheme(require('./styles'))
 
 // if (process.browser) require('./MenuButton.scss')
 

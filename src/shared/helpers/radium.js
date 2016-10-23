@@ -1,8 +1,14 @@
 import radium from 'radium'
+import config from '../../config/config'
 
 // function styleLogger({ componentName, style }) {
 //   console.log('Name', componentName, style)
 // }
+
+export const getTheme = (styles) => {
+  const theme = styles[config.theme]
+  return { ...styles.default, ...theme }
+}
 
 export default (component) => radium({
   plugins: [
