@@ -12,5 +12,8 @@ export default {
   h2: {
     fontFamily: '\'Josefin Sans\', sans-serif',
     fontWeight: 'bold'
+  },
+  '*': {
+    boxSizing: 'border-box'
   }
 }

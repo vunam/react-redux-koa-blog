@@ -5,6 +5,7 @@ import SideBarNav from '../../components/SideBarNav/SideBarNav.jsx'
 import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import MenuButton from '../../components/MenuButton/MenuButton.jsx'
+import * as actions from '../../../actions/navigation'
 
 import Radium, { getTheme } from '../../../helpers/radium'
 
@@ -12,12 +13,18 @@ const styles = getTheme(require('./styles'))
 
 @connect((state) => ({
   opened: state.navigation.opened
-}), null)
+}), actions)
 @Radium
 class Main extends Component {
   static propTypes = {
     opened: PropTypes.bool,
-    children: PropTypes.node
+    children: PropTypes.node,
+    closeMenu: PropTypes.func
+  }
+
+  closeSidebar = () => {
+    const { closeMenu } = this.props
+    closeMenu()
   }
 
   render() {
@@ -28,7 +35,7 @@ class Main extends Component {
           <div style={[styles.MainContent, (opened ? styles.MainContentIsSlided : null)]}>
             <SideBarNav opened={opened} />
             <MenuButton opened={opened} />
-            <div style={ [styles.MainOverlay, (opened ? styles.MainOverlayIsVisible : null)] } />
+            <div onClick={ this.closeSidebar } style={ [styles.MainOverlay, (opened ? styles.MainOverlayIsVisible : null)] } />
             <Header />
             { this.props.children }
             <Footer />

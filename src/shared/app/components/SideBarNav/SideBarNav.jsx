@@ -23,7 +23,7 @@ export default class SideBarNav extends Component {
       <div style={[styles.SideBarNav, (opened ? styles.SideBarNavIsOpen : null)]}>
         <div style={ styles.SideBarNavInner }>
           <h3>Navigation</h3>
-          <ul>
+          <ul style={ styles.SideBarNavList }>
             <li><Link onClick={ closeMenu } to="/">Home</Link></li>
             <li><Link onClick={ closeMenu } to="/category/featured">Featured</Link></li>
             <li><Link onClick={ closeMenu } to="/category/javascript">Javascript</Link></li>

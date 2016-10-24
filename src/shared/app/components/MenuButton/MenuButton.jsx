@@ -6,8 +6,6 @@ import Radium, { getTheme } from '../../../helpers/radium'
 
 const styles = getTheme(require('./styles'))
 
-// if (process.browser) require('./MenuButton.scss')
-
 @connect(null, actions)
 @Radium
 export default class MenuButton extends Component {
