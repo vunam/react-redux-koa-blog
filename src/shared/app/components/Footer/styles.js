@@ -1,7 +1,7 @@
 export default {
   Footer: {
     width: '100%',
-    backgroundColor: '#eeeeee'
+    backgroundColor: 'black'
   },
   FooterInfo: {
     width: '100%',

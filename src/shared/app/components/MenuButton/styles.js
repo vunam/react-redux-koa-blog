@@ -19,6 +19,6 @@ export default {
     width: '36px',
     height: '3px',
     margin: '5px 0',
-    backgroundColor: 'red'
+    backgroundColor: 'black'
   }
 }

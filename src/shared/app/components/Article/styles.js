@@ -16,14 +16,20 @@ export default {
     boxSizing: 'border-box'
   },
   ArticleDate: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textTransform: 'uppercase'
   },
   ArticleTitle: {
     fontFamily: '\'Lora\', serif',
     fontWeight: 'bold',
     fontSize: '2.8em',
     margin: '0.1em 0',
-    color: 'black'
+    color: 'black',
+    textDecoration: 'none',
+    ':visited': {
+      color: 'black',
+      fontSize: '10em'
+    }
   },
   ArticleSubtitle: {
     fontWeight: 'bold',
@@ -41,5 +47,19 @@ export default {
     fontFamily: '\'Josefin Sans\', sans-serif',
     fontSize: '1.3em',
     margin: '1em 0 0.3em'
+  },
+  ArticleLinks: {
+    color: 'black'
+  },
+  ArticleTags: {
+    margin: '10px 0'
+  },
+  ArticleCategories: {
+    margin: '10px 0'
+  },
+  ArticleReadMore: {
+    display: 'inline-block',
+    marginBottom: '20px',
+    color: 'black'
   }
 }

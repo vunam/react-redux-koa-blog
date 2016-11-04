@@ -29,13 +29,13 @@ export default class Article extends Component {
 
   displayTitle = () => {
     const { type, title, seoName } = this.props
-    return (type === 'full') ? title : <Link to={`/article/${seoName}`}>{ title }</Link>
+    return (type === 'full') ? <span style={ styles.ArticleTitle }>title</span> : <Link to={`/article/${seoName}`} style={ styles.ArticleTitle }>{ title }</Link>
   }
 
   displayText = () => {
     const { type, text, lead, seoName } = this.props
     if (type === 'full') return <div dangerouslySetInnerHTML={ { __html: text } } />
-    return [<div key="lead" dangerouslySetInnerHTML={ { __html: lead } } />, <Link key="link" to={ `/article/${seoName}` }>Read more &raquo;</Link>]
+    return [<div key="lead" dangerouslySetInnerHTML={ { __html: lead } } />, <Link key="link" to={ `/article/${seoName}` } style={ styles.ArticleReadMore }>Read more &raquo;</Link>]
   }
 
   goToArticle = () => {
@@ -48,7 +48,7 @@ export default class Article extends Component {
     if (categories && categories.length) {
       return (
         <div style={ styles.ArticleCategories }>
-          Categories: { categories.map((cat, i) => <Link key={i} to={`/category/${cat}`}>{`#${cat} `}</Link>) }
+          Categories: { categories.map((cat, i) => <Link key={i} to={`/category/${cat}`} style={ styles.ArticleLinks }>{`#${cat} `}</Link>) }
         </div>
       )
     }
@@ -60,7 +60,7 @@ export default class Article extends Component {
     if (tags && tags.length) {
       return (
         <div style={ styles.ArticleTags }>
-          Tags: { tags.map((tag, i) => <Link key={i} to={`/tag/${tag}`}>{`#${tag} `}</Link>) }
+          Tags: { tags.map((tag, i) => <Link key={i} to={`/tag/${tag}`} style={ styles.ArticleLinks }>{`#${tag} `}</Link>) }
         </div>
       )
     }
@@ -77,9 +77,9 @@ export default class Article extends Component {
             <div style={ styles.ArticleMeta }>
               <span style={ styles.ArticleDate }>
                 <time dateTime={ date }>{ this.displayDate() }</time>
-              </span> / <span style={ styles.ArticleAuthor }>{ author }</span>
+              </span> <span style={ styles.ArticleAuthor }>{ author }</span>
             </div>
-            <h1 style={ styles.ArticleTitle }>
+            <h1>
               { this.displayTitle() }
             </h1>
             <h2 style={ styles.ArticleSubTitle }>{subTitle}</h2>

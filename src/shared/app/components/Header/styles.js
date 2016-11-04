@@ -1,12 +1,12 @@
 export default {
   Header: {
     width: '100%',
-    maxWidth: '980px',
     margin: '0 auto',
     padding: '20px',
     textAlign: 'center',
     boxSizing: 'border-box',
-    borderBottom: '1px solid #dddddd'
+    borderBottom: '1px solid #dddddd',
+    backgroundColor: 'white'
   },
   HeaderTitle: {
     fontFamily: '\'Lora\', serif',

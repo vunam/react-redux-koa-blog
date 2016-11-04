@@ -20,9 +20,12 @@ export default {
   },
   ArticleContainerLoadMore: {
     width: '100%',
-    height: '60px',
+    height: '90px',
     textAlign: 'center',
     border: 'none',
-    backgroundColor: '#bbb'
+    fontFamily: '\'Lora\', serif',
+    fontSize: '2em',
+    color: 'white',
+    backgroundColor: 'gray'
   }
 }

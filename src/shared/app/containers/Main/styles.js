@@ -1,6 +1,9 @@
 const slideDuration = '.5s'
 
 export default {
+  Main: {
+    background: '#eee'
+  },
   MainIsSlided: {
     overflow: 'hidden'
   },
