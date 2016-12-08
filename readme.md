@@ -2,7 +2,7 @@
 
 This is a simple blog using technologies such as React, Redux, Node, Koa etc. Testing is done in mocha with chai/expect, jsdom & enzyme. You can use this blog and adjust it to your needs.
 
-![React Blog](http://i.imgur.com/fDOxPuu.png)
+![React Blog](http://imgur.com/oC5j6k9.png)
 
 ## To do
 
@@ -18,6 +18,6 @@ This is a simple blog using technologies such as React, Redux, Node, Koa etc. Te
 - ~~Detail page~~
 - ~~Group by categories~~
 - Disqus
-- SEO
+- ~~SEO~~
 - Metadata
 - Social
