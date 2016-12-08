@@ -19,7 +19,8 @@ class Main extends Component {
   static propTypes = {
     opened: PropTypes.bool,
     children: PropTypes.node,
-    closeMenu: PropTypes.func
+    closeMenu: PropTypes.func,
+    location: PropTypes.object
   }
 
   closeSidebar = () => {
@@ -28,12 +29,12 @@ class Main extends Component {
   }
 
   render() {
-    const { opened } = this.props
+    const { opened, location } = this.props
     return (
       <StyleRoot>
         <div style={[styles.Main, (opened ? styles.MainIsSlided : null)] }>
           <div style={[styles.MainContent, (opened ? styles.MainContentIsSlided : null)]}>
-            <SideBarNav opened={opened} />
+            <SideBarNav opened={opened} location={location} />
             <MenuButton opened={opened} />
             <div onClick={ this.closeSidebar } style={ [styles.MainOverlay, (opened ? styles.MainOverlayIsVisible : null)] } />
             <Header />

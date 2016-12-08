@@ -3,7 +3,9 @@ import { reduxForm, reset, change } from 'redux-form'
 import { connect } from 'react-redux'
 import TinyMCE from 'react-tinymce'
 import UrlSafeString from 'url-safe-string'
+import Radium from '../../../helpers/radium'
 import { domOnlyProps } from '../../../helpers/forms'
+import styles from './styles'
 
 const tagGenerator = new UrlSafeString()
 
@@ -15,6 +17,7 @@ export const formFields = ['uuid', 'title', 'subTitle', 'author', 'date', 'publi
   fields: formFields
 })
 @connect(null, { reset, change })
+@Radium
 class FormArticle extends Component {
 
   static propTypes = {
@@ -64,72 +67,77 @@ class FormArticle extends Component {
   render() {
     const { fields: { uuid, title, subTitle, author, date, published, lead, text, seoName, tags, categories, image } } = this.props
     return (
-      <div className="FormArticle">
+      <div style={ styles.FormArticle }>
         <div>
           <input type="text" className="FormArticle-uuid" {...domOnlyProps(uuid)} />
-          <p>
-            <label>Date</label>
-            <input type="text" className="FormArticle-date" placeholder="..." {...domOnlyProps(date)} />
-          </p>
-          <p>
-            <label>Title</label>
-            <input type="text" className="FormArticle-title" placeholder="..." {...domOnlyProps(title)} />
-          </p>
-          <p>
-            <label>Seo</label>
-            <input type="text" className="FormArticle-seoName" placeholder="..." {...domOnlyProps(seoName)} value={tagGenerator.generate(title.value)} />
-          </p>
-          <p>
-            <label>Sub title</label>
-            <input type="text" className="FormArticle-subTitle" placeholder="..." {...domOnlyProps(subTitle)} />
-          </p>
-          <p>
-            <label>Author</label>
-            <input type="text" className="FormArticle-author" placeholder="..." {...domOnlyProps(author)} />
-          </p>
-          <p>
-            <label>Published</label>
-            <input type="checkbox" className="FormArticle-published" placeholder="..." {...domOnlyProps(published)} />
-          </p>
-          <p>
-            <label>Tags</label>
-            <input type="text" className="FormArticle-tags" placeholder="..." {...domOnlyProps(tags)} />
-          </p>
-          <p>
-            <label>Categories</label>
-            <input type="text" className="FormArticle-categories" placeholder="..." {...domOnlyProps(categories)} />
-          </p>
-          <p>
-            <label>Lead</label>
-            <TinyMCE
-              className="FormArticle-lead"
-              ref={(c) => { this.editorLead = c }}
-              content={lead.value}
-              onChange={() => this.handleEditorChange('lead')}
-              config={{
-                plugins: 'link image code',
-                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
-              }}
-            />
-          </p>
-          <p>
-            <label>Text</label>
-            <TinyMCE
-              className="FormArticle-text"
-              ref={(c) => { this.editorText = c }}
-              content={text.value }
-              onChange={() => this.handleEditorChange('text')}
-              config={{
-                plugins: 'link image code',
-                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
-              }}
-            />
-          </p>
-          <p>
-            <label>Image</label>
-            <img src={image.value } alt="Current" />
-            <input type="file" className="FormArticle-image" placeholder="..." />
-          </p>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Date</label>
+            <input style={ styles.FormArticleInput } type="text" className="FormArticle-date" placeholder="..." {...domOnlyProps(date)} />
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Title</label>
+            <input style={ styles.FormArticleInput } type="text" className="FormArticle-title" placeholder="..." {...domOnlyProps(title)} />
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Seo</label>
+            <input style={ styles.FormArticleInput } type="text" className="FormArticle-seoName" placeholder="..." {...domOnlyProps(seoName)} value={tagGenerator.generate(title.value)} />
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Sub title</label>
+            <input style={ styles.FormArticleInput } type="text" className="FormArticle-subTitle" placeholder="..." {...domOnlyProps(subTitle)} />
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Author</label>
+            <input style={ styles.FormArticleInput } type="text" className="FormArticle-author" placeholder="..." {...domOnlyProps(author)} />
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Published</label>
+            <input style={ styles.FormArticleInput } type="checkbox" className="FormArticle-published" placeholder="..." {...domOnlyProps(published)} />
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Tags</label>
+            <input style={ styles.FormArticleInput } type="text" className="FormArticle-tags" placeholder="..." {...domOnlyProps(tags)} />
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Categories</label>
+            <input style={ styles.FormArticleInput } type="text" className="FormArticle-categories" placeholder="..." {...domOnlyProps(categories)} />
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Lead</label>
+            <div style={ styles.FormArticleInput }>
+              <TinyMCE
+                style={ styles.FormArticleInput }
+                className="FormArticle-lead"
+                ref={(c) => { this.editorLead = c }}
+                content={lead.value}
+                onChange={() => this.handleEditorChange('lead')}
+                config={{
+                  plugins: 'link image code',
+                  toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                }}
+              />
+            </div>
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Text</label>
+            <div style={ styles.FormArticleInput }>
+              <TinyMCE
+                className="FormArticle-text"
+                ref={(c) => { this.editorText = c }}
+                content={text.value }
+                onChange={() => this.handleEditorChange('text')}
+                config={{
+                  plugins: 'link image code',
+                  toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                }}
+              />
+            </div>
+          </div>
+          <div style={ styles.FormArticleRow }>
+            <label style={ styles.FormArticleLabel }>Image</label>
+            <img src={image.value } alt="Current" style={ styles.FormArticleImage } />
+            <input style={ styles.FormArticleInput } type="file" className="FormArticle-image" placeholder="..." />
+          </div>
           <button onClick={this.saveArticle }>Save</button>
           <button onClick={this.resetArticle }>Reset</button>
         </div>

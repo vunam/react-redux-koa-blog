@@ -37,7 +37,7 @@ export default function *renderView() {
           <RouterContext { ...renderProps } />
         </Provider>)
 
-      return ReactDOM.renderToString(<Html component={component} location={location} type={type} store={store} />)
+      return ReactDOM.renderToString(<Html component={component} location={location} type={type} store={store} radiumConfig={{ userAgent: this.request.headers['user-agent'] }} />)
     }
     fetchedData = fetchAppData(store, renderProps, location)
       .then(renderApp)

@@ -16,7 +16,10 @@ export default {
     position: 'relative',
     width: '100%',
     animation: 'x 1.5s forwards',
-    animationName: fadeIn
+    animationName: fadeIn,
+    borderTop: '1px solid #dddddd',
+    backgroundColor: '#eee',
+    opacity: 0
   },
   ArticleContainerLoadMore: {
     width: '100%',

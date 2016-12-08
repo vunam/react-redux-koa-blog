@@ -26,7 +26,25 @@ export default {
     padding: 0,
     margin: 0
   },
+  SideBarNavTitle: {
+    textTransform: 'uppercase',
+    color: 'white',
+    marginBottom: '30px'
+  },
   SideBarNavListItem: {
-    color: 'white'
+    margin: '15px 0'
+  },
+  SideBarNavLink: {
+    color: 'white',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    fontWeight: '100',
+    ':visited': 'white'
+  },
+  SideBarNavLinkSelected: {
+    color: 'white',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    fontWeight: 'bold'
   }
 }

@@ -5,5 +5,8 @@ export default {
     margin: '0 auto',
     padding: '0 20px 50px',
     fontSize: '1.3em'
+  },
+  FullArticleBackLink: {
+    color: 'black'
   }
 }

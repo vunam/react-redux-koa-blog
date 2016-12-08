@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import Radium from 'radium'
+import Radium from '../../../helpers/radium'
 import SideArticles from '../../common/SideArticles/SideArticles'
 import FormArticle from '../../common/FormArticle/FormArticle'
 import * as postsActions from '../../../actions/posts'
@@ -35,14 +35,18 @@ class Cms extends Component {
     const { posts, editedPost, savePost } = this.props
     return (
       <div style={ styles.Cms }>
-        <div style={ styles.CmsSide }>
-          <div>
-            <button onClick={ this.setNewArticle }>New article</button>
-          </div>
-          <SideArticles posts={posts} editedPost={editedPost} />
+        <div style={ styles.CmsRow }>
+          <button style={ styles.CmsNewArticle } onClick={ this.setNewArticle }>New article</button>
         </div>
-        <div style={ styles.CmsMain }>
-          <FormArticle initialValues={ editedPost.uuid ? editedPost : { published: true }} savePost={ savePost } />
+        <div style={ styles.CmsRow }>
+          <div style={ styles.CmsSide }>
+            <h2>Articles</h2>
+            <SideArticles posts={posts} editedPost={editedPost} />
+          </div>
+          <div style={ styles.CmsMain }>
+            <h2>New/edit article</h2>
+            <FormArticle initialValues={ editedPost.uuid ? editedPost : { published: true }} savePost={ savePost } />
+          </div>
         </div>
       </div>
     )

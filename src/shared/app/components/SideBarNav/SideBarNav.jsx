@@ -7,29 +7,33 @@ import Radium, { getTheme } from '../../../helpers/radium'
 
 const styles = getTheme(require('./styles'))
 
-// if (process.browser) require('./SideBarNav.scss')
-
 @connect(null, actions)
 @Radium
 export default class SideBarNav extends Component {
   static propTypes = {
     opened: PropTypes.bool,
-    closeMenu: PropTypes.func
+    closeMenu: PropTypes.func,
+    location: PropTypes.object
+  }
+
+  getLink(pathname, title) {
+    const { closeMenu, location } = this.props
+    return <li style={ styles.SideBarNavListItem }><Link onClick={ closeMenu } to={ pathname } style={ pathname === location.pathname ? styles.SideBarNavLinkSelected : styles.SideBarNavLink }>{ title }</Link></li>
   }
 
   render() {
-    const { opened, closeMenu } = this.props
+    const { opened } = this.props
     return (
       <div style={[styles.SideBarNav, (opened ? styles.SideBarNavIsOpen : null)]}>
         <div style={ styles.SideBarNavInner }>
-          <h3>Navigation</h3>
+          <h3 style={ styles.SideBarNavTitle }>Navigation</h3>
           <ul style={ styles.SideBarNavList }>
-            <li><Link onClick={ closeMenu } to="/">Home</Link></li>
-            <li><Link onClick={ closeMenu } to="/category/featured">Featured</Link></li>
-            <li><Link onClick={ closeMenu } to="/category/javascript">Javascript</Link></li>
-            <li><Link onClick={ closeMenu } to="/category/ux-design">UX / Design</Link></li>
-            <li><Link onClick={ closeMenu } to="/category/personal">Personal</Link></li>
-            <li><Link onClick={ closeMenu } to="/category/travel">Travel</Link></li>
+            { this.getLink('/', 'Home') }
+            { this.getLink('/category/featured', 'Featured') }
+            { this.getLink('/category/javascript', 'Javascript') }
+            { this.getLink('/category/ux-design', 'UX / Design') }
+            { this.getLink('/category/personal', 'Personal') }
+            { this.getLink('/category/travel', 'Travel') }
           </ul>
         </div>
       </div>

@@ -4,9 +4,8 @@ import * as postsActions from '../../../actions/posts'
 import * as cmsActions from '../../../actions/cms'
 import { strToShortDateTime } from '../../../helpers/dates.js'
 
-import Radium, { getTheme } from '../../../helpers/radium'
-
-const styles = getTheme(require('./styles'))
+import Radium from '../../../helpers/radium'
+import styles from './styles'
 
 @connect(state => ({
   posts: state.posts.list,
@@ -29,18 +28,15 @@ class SideArticles extends Component {
     const { posts } = this.props
     return (
       <div className="SideArticles" style={ styles.SideArticles }>
-        <table style={ styles.SideArticlesTable }>
-          <tbody>
-            { posts.map((post, i) => (
-              <tr key={i}>
-                <td style={ styles.SideArticlesTableTd }>{ post.title }<span className="SideArticles-date">{ strToShortDateTime(post.date) }</span></td>
-                <td style={ styles.SideArticlesTableTd }>
-                  <button onClick={() => this.clickEditPost(post)}>edit</button>
-                </td>
-              </tr>)
-            )}
-          </tbody>
-        </table>
+        <ul style={ styles.SideArticlesList }>
+          { posts.map((post, i) => (
+            <li key={i} style={ styles.SideArticlesItem }>
+              <span style={ styles.SideArticlesTitle }>{ post.title }</span>
+              <span style={ styles.SideArticlesDate }>{ strToShortDateTime(post.date) }</span>
+              <button style={ styles.SideArticlesButton } onClick={() => this.clickEditPost(post)}>edit</button>
+            </li>)
+          )}
+        </ul>
       </div>
     )
   }
