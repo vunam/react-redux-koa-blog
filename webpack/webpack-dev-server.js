@@ -7,8 +7,8 @@ const config = require('./dev.config.js')
 const port = 8000
 
 config.entry.app.unshift(
-    'webpack-dev-server/client?http://localhost:' + port + '/',
-    'webpack/hot/dev-server')
+  'webpack-dev-server/client?http://localhost:' + port + '/',
+  'webpack/hot/dev-server')
 
 const devServerConfig = {
   contentBase: path.join(__dirname, '../'),
